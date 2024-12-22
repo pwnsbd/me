@@ -7,6 +7,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
 }
 
 .container {
@@ -37,4 +39,24 @@ body {
     z-index: 1;
     bottom: 125%; /* Position above the icon */
     left: 5
+}
+
+#hidden-text {
+    position: absolute;
+    font-size: 1.5rem;
+    color: black; /* Hidden when not illuminated */
+    transition: color 0.2s ease-in-out;
+}
+
+.spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(0, 0, 0, 0.9) 60%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
 }
