@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Pawan Subedi</title>
+  <!-- Reuse landing and navigation styles for consistency -->
+  <link rel="stylesheet" href="./styles/landing.css">
+  <link rel="stylesheet" href="./styles/nav.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap">
+  <style>
+    .resume-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+    }
+
+    .resume-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin: 0 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ecf0f1;
+    }
+
+    .resume-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .resume-section li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .resume-section li:last-child {
+      border-bottom: none;
+    }
+
+    .resume-section strong {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .download-section a {
+      color: white;
+      font-weight: 600;
+      text-decoration: underline;
+      transition: opacity 0.3s ease;
+    }
+
+    .download-section a:hover {
+      opacity: 0.8;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      background: white;
+      color: #667eea;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="photography.html" class="nav-link">Photography</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
+    </div>
+  </nav>
+
+  <div class="landing-container">
+    <div class="content-section">
+      <h1 class="greeting">Resume</h1>
+      
+      <div class="download-section">
+        <p style="margin: 0; font-size: 1.1rem;">
+          Download the PDF version of my resume
+        </p>
+        <a href="./assets/resume.pdf" class="download-btn" download>Download PDF</a>
+      </div>
+
+      <div class="resume-section">
+        <h2>Education</h2>
+        <ul>
+          <li>
+            <strong>Master of Science in Visualization</strong><br>
+            Texas A&M University<br>
+            <em>Currently pursuing</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Professional Experience</h2>
+        <ul>
+          <li>
+            <strong>Position Title</strong> – Company Name<br>
+            <em>Add your role description, responsibilities, and achievements here.</em>
+          </li>
+          <li>
+            <strong>Another Position</strong> – Another Company<br>
+            <em>Add more positions as needed.</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Skills</h2>
+        <ul>
+          <li><strong>Programming Languages:</strong> List your languages here</li>
+          <li><strong>Tools & Frameworks:</strong> List your tools and frameworks</li>
+          <li><strong>Other Skills:</strong> Add any other relevant skills</li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Projects & Portfolio</h2>
+        <ul>
+          <li>
+            <strong>Project Name</strong><br>
+            <em>Brief description of the project and your contributions.</em><br>
+            <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="external-link">View on GitHub</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Contact</h2>
+        <ul>
+          <li><strong>GitHub:</strong> <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="external-link">github.com/pwnsbd</a></li>
+          <li><strong>Instagram:</strong> <a href="https://www.instagram.com/pawan_subedi/" target="_blank" rel="noopener noreferrer" class="external-link">@pawan_subedi</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

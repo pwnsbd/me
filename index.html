@@ -2,37 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Landing Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pawan Subedi | Personal Website</title>
   <!-- Landing page specific styles -->
   <link rel="stylesheet" href="./src/styles/landing.css">
-  <!-- Typewriter style: Courier or Roboto Mono -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap">
+  <!-- Navigation bar styles -->
+  <link rel="stylesheet" href="./src/styles/nav.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap">
 </head>
 
 <body>
-  <!-- Main paper-like container -->
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="./src/photography.html" class="nav-link">Photography</a>
+      <a href="./src/resume.html" class="nav-link">Resume</a>
+    </div>
+  </nav>
+
+  <!-- Main content container -->
   <div class="landing-container">
-    <img 
-      src="./src/assets/sf_evening_sunset_2.jpg" 
-      alt="Black & White on hover" 
-      class="landing-image"
-    >
-    <p class="landing-text">
-      Hello, fellow traveller!<br>
-      <p class="answer-text">
-      Looks like you found me in your strolling walk!<br>
-      Just a confused guy, trying to figure out what to do. <br>
-      A <a href="./src/photography.html" style=""> photographer</a> by heart and working as a software engineer. <br> 
-      You can find my photographer work <a href="https://www.instagram.com/pawan_subedi/">here</a>, which is also my personal account.<br>
-      And you can find my github repo, <a href="https://github.com/pwnsbd">here</a>. <br>
-      I like writing broken quotes.<br>
-      But most interesting thing that I am currently working on is,
-      <a href="https://www.sidefx.com/">Houdini</a> <br>
-      You can see small progress, <a href="https://www.instagram.com/alle_ory/">here</a><br>
-      Mastering it slowly but surely!<br>
-      I just got bored with lightroom and wanted to try something new.<br>
-    </p>
-    </p>
+    <div class="hero-section">
+      <img 
+        src="./src/assets/sf_evening_sunset_2.jpg" 
+        alt="San Francisco Evening Sunset" 
+        class="landing-image"
+      >
+    </div>
+    
+    <div class="content-section">
+      <h1 class="greeting">Hello, fellow traveller!</h1>
+      <p class="landing-text">
+        Looks like you found the page in your surf!<br>
+        Just a guy, trying to figure out what to do.
+      </p>
+      
+      <p class="landing-text">
+        <a href="./src/photography.html" class="highlight-link">Artist</a> by heart and problem solver by mind.
+      </p>
+
+      <p class="landing-text">
+        Currently studying at Texas A&M in a program called "Master of Science in Visualization."
+      </p>
+
+      <div class="links-section">
+        <p class="landing-text">
+          You can find my photography work <a href="https://www.instagram.com/pawan_subedi/" target="_blank" rel="noopener noreferrer" class="external-link">here</a>, which is also my personal account.
+        </p>
+        <p class="landing-text">
+          And you can find my GitHub repository <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="external-link">here</a>.
+        </p>
+      </div>
+
+      <div class="quote-section">
+        <p class="landing-text">
+          I like writing broken quotes.
+        </p>
+        <blockquote class="quote">
+          <i>"Jack of all Trades but Master of none, but soon to be master of some."</i>
+        </blockquote>
+        <p class="landing-text">
+          You can see small progress, <a href="https://www.instagram.com/alle_ory/" target="_blank" rel="noopener noreferrer" class="external-link">here</a><br>
+          Mastering it slowly but surely!<br>
+          I just got bored with lightroom and wanted to try something new.
+        </p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
