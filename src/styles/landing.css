@@ -1,49 +1,174 @@
 html, body {
-    margin: 0;
-    padding: 0;
-    background: #eee; /* Soft gray background */
-    font-family: 'Roboto Mono', Courier, monospace; /* typewriter style */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Roboto Mono', 'Courier New', monospace;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.landing-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 0;
+  overflow: hidden;
+  animation: fadeIn 0.6s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  a {
-    text-decoration: none;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  
+}
+
+.hero-section {
+  width: 100%;
+  overflow: hidden;
+}
+
+.landing-image {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.landing-image:hover {
+  filter: grayscale(0%);
+  transform: scale(1.05);
+}
+
+.content-section {
+  padding: 3rem 2.5rem;
+}
+
+.greeting {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+
+.landing-text {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  font-weight: 400;
+}
+
+.highlight-link {
+  color: #3498db;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.highlight-link:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+}
+
+.external-link {
+  color: #3498db;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.external-link:hover {
+  color: #2980b9;
+  border-bottom-color: #2980b9;
+}
+
+.links-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.quote-section {
+  margin: 2.5rem 0;
+}
+
+.quote {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background: #fff9e6;
+  border-left: 4px solid #f39c12;
+  border-radius: 4px;
+  font-style: italic;
+  color: #555;
+  line-height: 1.8;
+}
+
+.quote i {
+  font-size: 1.15rem;
+  color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .landing-container {
-    max-width: 80%;
-    margin: 5% auto;        /* center the container horizontally, 5% from top */
-    background: #fff;     /* white "paper" */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 95%;
+    margin: 1rem auto;
     border-radius: 8px;
-    padding: 2rem;
-    /* Remove text-align: center so contents align left */
-    text-align: left;
   }
-  
-  .landing-image {
-    max-width: 100%;
-    height: 50vh;
-    display: block;  /* make the image a block so margin auto centers it */
-    margin: 0 auto;  /* center the image horizontally */
-    filter: grayscale(100%);
-    transition: filter 0.3s ease;
-    cursor: pointer;
+
+  .content-section {
+    padding: 2rem 1.5rem;
   }
-  
-  .landing-image:hover {
-    filter: none;
+
+  .greeting {
+    font-size: 2rem;
   }
-  
-  /* Text content is now left-aligned by default
-     because of the .landing-container's text-align: left */
+
   .landing-text {
-    margin-top: 1rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
-    color: #333;
   }
-  .answer-text {
-    margin-left: 2em; 
+
+  .landing-image {
+    height: 40vh;
   }
-  
+
+  .links-section {
+    padding: 1rem;
+  }
+
+  .quote {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .greeting {
+    font-size: 1.75rem;
+  }
+
+  .content-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .landing-image {
+    height: 35vh;
+  }
+}

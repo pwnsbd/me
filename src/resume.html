@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume | Pawan Subedi</title>
+  <!-- Reuse landing and navigation styles for consistency -->
+  <link rel="stylesheet" href="./styles/landing.css">
+  <link rel="stylesheet" href="./styles/nav.css">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap">
+  <style>
+    .contact-info {
+      text-align: center;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin: 2rem 0;
+      line-height: 2;
+    }
+
+    .contact-info a {
+      color: #3498db;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .contact-info a:hover {
+      color: #2980b9;
+      text-decoration: underline;
+    }
+
+    .resume-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+    }
+
+    .resume-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin: 0 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid #ecf0f1;
+    }
+
+    .resume-section ul {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0;
+    }
+
+    .resume-section li {
+      padding: 1rem 0;
+      border-bottom: 1px solid #e0e0e0;
+      line-height: 1.8;
+    }
+
+    .resume-section li:last-child {
+      border-bottom: none;
+    }
+
+    .resume-section strong {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+
+    .job-title {
+      font-size: 1.1rem;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+    }
+
+    .job-meta {
+      color: #7f8c8d;
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      font-style: italic;
+    }
+
+    .job-description {
+      color: #555;
+      margin-top: 0.5rem;
+    }
+
+    .job-description ul {
+      margin: 0.5rem 0 0 1.5rem;
+      list-style: disc;
+    }
+
+    .job-description li {
+      padding: 0.25rem 0;
+      border-bottom: none;
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+
+    .download-section a {
+      color: white;
+      font-weight: 600;
+      text-decoration: underline;
+      transition: opacity 0.3s ease;
+    }
+
+    .download-section a:hover {
+      opacity: 0.8;
+    }
+
+    .download-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 2rem;
+      background: white;
+      color: #667eea;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-decoration: none;
+    }
+
+    .download-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .skill-category {
+      background: white;
+      padding: 1rem;
+      border-radius: 6px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .skill-category strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #2c3e50;
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Tab Styles */
+    .tab-container {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin: 2rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 1rem 2rem;
+      background: transparent;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #7f8c8d;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .tab-button:hover {
+      color: #2c3e50;
+      background: rgba(52, 152, 219, 0.1);
+    }
+
+    .tab-button.active {
+      color: #3498db;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .tab-container {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .tab-button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="../index.html" class="nav-link">Home</a>
+      <a href="photography.html" class="nav-link">Photography</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
+    </div>
+  </nav>
+
+  <div class="landing-container">
+    <div class="content-section">
+      <h1 class="greeting">Pawan Subedi</h1>
+      
+      <div class="contact-info">
+        <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer">GitHub</a> |
+        <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
+        <a href="mailto:justpawan7@gmail.com">justpawan7@gmail.com</a> |
+        <a href="tel:6057281310">605-728-1310</a>
+      </div>
+      
+      <div class="download-section">
+        <p style="margin: 0; font-size: 1.1rem;">
+          Download the PDF version of my resume
+        </p>
+        <a href="./assets/resume.pdf" class="download-btn" download>Download PDF</a>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="tab-container">
+        <button class="tab-button active" onclick="switchTab('resume', this)">Resume</button>
+        <button class="tab-button" onclick="switchTab('cv', this)">CV</button>
+      </div>
+
+      <!-- Resume Content -->
+      <div id="resume-content" class="tab-content active">
+      <div class="resume-section">
+        <h2>Professional Experience</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>System Software Engineer</strong></div>
+            <div class="job-meta">Hewlett Packard Enterprises, San Jose, CA | July 2022 - April 2025</div>
+            <div class="job-description">
+              <ul>
+                <li>Built shared Python/PyTest utilities adopted by 15 engineers, reducing overall script length by ~40% and improving test workflows.</li>
+                <li>Developed automated simulation test cases to identify defects and validate system limits across varied scenarios.</li>
+                <li>Integrated test automation into CI pipelines and improved failure triage by adding structured logging and clearer assertions.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Teaching Assistant</strong></div>
+            <div class="job-meta">Texas A&M, College Station, TX | Aug 2025 - Present</div>
+            <div class="job-description">
+              <ul>
+                <li>Taught weekly lab sections for ~60 students, guiding them in Unreal Engine and building gameplay features using Blueprint scripting.</li>
+                <li>Provided hands-on technical support (debugging Blueprint graphs, actors/components, gameplay events), helping teams reach milestone deliverables and playable prototypes.</li>
+                <li>Graded assignments/projects for 60 students using a rubric, delivering feedback on gameplay functionality, Blueprint logic quality, and completion.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Intern Co-op</strong></div>
+            <div class="job-meta">Hewlett Packard Enterprises, San Jose, CA | May 2021 - May 2022</div>
+            <div class="job-description">
+              <ul>
+                <li>Created a GUI tool used by 300+ employees to perform CLI-based workflows more efficiently.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Software Engineer</strong></div>
+            <div class="job-meta">Neighbor Marketing, Remote, New York | Apr 2020 – June 2020</div>
+            <div class="job-description">
+              <ul>
+                <li>Led a team of 4 to build a property reviews web product using React/JavaScript; integrated Google APIs, Firebase auth, and automated email tooling.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Education</h2>
+        <ul>
+          <li>
+            <strong>Master of Science in Visualization</strong><br>
+            Texas A&M, College Station, TX<br>
+            <em>Expected: May 2027</em>
+          </li>
+          <li>
+            <strong>Bachelor of Arts, Computer Science and Data Science / Minor: Math</strong><br>
+            Augustana University, Sioux Falls, SD<br>
+            <em>May 2022 | Cumulative GPA: 3.52/4.00</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Skills & Interests</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <strong>Programming Languages:</strong>
+            C++, Python, Java, React, HTML, JavaScript, Swift
+          </div>
+          <div class="skill-category">
+            <strong>Engines/Tools:</strong>
+            Unreal Engine, Unity, Houdini, Git, Docker, OpenCV, PyTorch
+          </div>
+          <div class="skill-category">
+            <strong>Interests:</strong>
+            Deep Learning, Reinforcement Learning, Football (Soccer), Drawing/Painting, Photography, Videography
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>AR/Game Projects (Coursework)</strong></div>
+            <div class="job-meta">Aug 2025 - Present</div>
+            <div class="job-description">
+              <ul>
+                <li>Built 3 interactive prototypes, including ScavengAR Hunt (AR scavenger hunt with staged progression) and Animal vs. Human, focusing on complete gameplay loops from setup to interaction to completion.</li>
+                <li>Implemented core game systems such as state-based progression, spawning/triggers, UI prompts, and interaction logic (e.g., target-based events / collisions / input-driven actions) using Unity + AR stack (Vuforia/AR Foundation as applicable).</li>
+                <li>Iterated through playtests to debug tracking/interaction issues, refine UX clarity, and improve reliability/performance across builds.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Sanford Health Hack, Runner Up - Health Memo (Team Lead/App Developer)</strong></div>
+            <div class="job-meta">Sep 2022 - Oct 2022</div>
+            <div class="job-description">
+              <ul>
+                <li>Earned Second place and people's choice award out of 20 teams, winning a total of $9,000 prize.</li>
+                <li>Pitched a business plan and prototyped an iOS app that helped to keep logs of users' health.</li>
+                <li>Prototyped app using Swift, Parse, and Google API i.e. embedded Google's Text-to-Speech and Speech-to-Text feature.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>GAN, Generative Adversarial Network</strong></div>
+            <div class="job-meta">Oct 2023 - Aug 2025</div>
+            <div class="job-description">
+              <ul>
+                <li>Reproduced and experimented with GAN architectures (CycleGAN, StyleGAN, DCGAN, SRGAN) using PyTorch/OpenCV, exploring edge/structure-preserving outputs.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Sanford Health Hack Runner Up - Pill Buddy (Team Lead)</strong></div>
+            <div class="job-meta">Sep 2019 - Oct 2019</div>
+            <div class="job-description">
+              <ul>
+                <li>Developed mobile application and presented product pitch, earned second place out of 12 teams, and won prize pool of $7,000.</li>
+                <li>Designed a user-friendly interface that allows 5,000+ elderly Sanford patients to check their drug interactions to prevent overdose and help them know less common interactions between drugs.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Leadership & Affiliations</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>Conference Volunteer</strong></div>
+            <div class="job-meta">ACM SIGGRAPH 2024, Denver, CO | Jul 2024 – Aug 2024</div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Communication Director</strong></div>
+            <div class="job-meta">Augustana Student Association, Sioux Falls, SD | Aug 2019 – May 2020</div>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+      <!-- CV Content -->
+      <div id="cv-content" class="tab-content">
+      <div class="resume-section">
+        <h2>Professional Experience</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>Teaching Assistant</strong></div>
+            <div class="job-meta">Texas A&M, College Station, TX | Aug 2025 - Present</div>
+            <div class="job-description">
+              <ul>
+                <li>Taught weekly lab sections for ~60 students, guiding them in Unreal Engine and building gameplay features using Blueprint scripting.</li>
+                <li>Provided hands-on technical support (debugging Blueprint graphs, actors/components, gameplay events), helping teams reach milestone deliverables and playable prototypes.</li>
+                <li>Graded assignments/projects for 60 students using a rubric, delivering feedback on gameplay functionality, Blueprint logic quality, and completion.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>System Software Engineer</strong></div>
+            <div class="job-meta">Hewlett Packard Enterprises, San Jose, CA | July 2022 - April 2025</div>
+            <div class="job-description">
+              <ul>
+                <li>Implemented robust functions that were leveraged by 15 team members that cut the general lengths of scripts by 40% using Python, Pytest.</li>
+                <li>Worked on system simulation project i.e. defining, identifying defects & pushing the limit of the system with different test cases and automations.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Software Engineer</strong></div>
+            <div class="job-meta">Hewlett Packard Enterprises, San Jose, CA | May 2021 - May 2022</div>
+            <div class="job-description">
+              <ul>
+                <li>Created a user-friendly GUI that facilitated more than 300 employees in executing specific CLI-based tasks efficiently.</li>
+                <li>Enhanced web app UI by applying Python, Django, MongoDB, Celery, and Elasticsearch, resulting in the successful achievement of project objectives.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Software Engineer</strong></div>
+            <div class="job-meta">Neighbor Marketing, Remote, New York | Apr 2020 – June 2020</div>
+            <div class="job-description">
+              <ul>
+                <li>Led a team of 4 to design and develop a property reviews website to impact 250,000+ people using React, JavaScript, and other relevant tools.</li>
+                <li>Implemented Google API to support location, auto-completion, and used Firebase authentication for profiles and Mailchimp for automated emails and newsletters.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Education</h2>
+        <ul>
+          <li>
+            <strong>Master of Science in Visualization</strong><br>
+            Texas A&M, College Station, TX<br>
+            <em>May 2027</em>
+          </li>
+          <li>
+            <strong>Bachelor of Arts, Computer Science and Data Science / Minor: Math</strong><br>
+            Augustana University, Sioux Falls, SD<br>
+            <em>May 2022 | Cumulative GPA: 3.52/4.00</em>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Skills & Interests</h2>
+        <div class="skills-grid">
+          <div class="skill-category">
+            <strong>Programming Languages:</strong>
+            C++, Python, Java, React, HTML, JavaScript, Swift
+          </div>
+          <div class="skill-category">
+            <strong>Tools:</strong>
+            Unreal, Unity, Houdini, PyTorch, Keras, Django, Git, Docker, OpenCV
+          </div>
+          <div class="skill-category">
+            <strong>Interests:</strong>
+            Deep Learning, Reinforcement Learning, Drawing/Painting, Football (Soccer), Photography, Videography
+          </div>
+        </div>
+      </div>
+
+      <div class="resume-section">
+        <h2>Projects</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>AR/Game Projects (Coursework)</strong></div>
+            <div class="job-meta">Aug 2025 - Present</div>
+            <div class="job-description">
+              <ul>
+                <li>Built 3 interactive prototypes, including ScavengAR Hunt (AR scavenger hunt with staged progression) and Animal vs. Human, focusing on complete gameplay loops from setup to interaction to completion.</li>
+                <li>Implemented core game systems such as state-based progression, spawning/triggers, UI prompts, and interaction logic (e.g., target-based events / collisions / input-driven actions) using Unity + AR stack (Vuforia/AR Foundation as applicable).</li>
+                <li>Iterated through playtests to debug tracking/interaction issues, refine UX clarity, and improve reliability/performance across builds.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>GAN, Generative Adversarial Network</strong></div>
+            <div class="job-meta">Oct 2023 - Aug 2025</div>
+            <div class="job-description">
+              <ul>
+                <li>Learning and reproducing different GAN papers i.e. Cycle GAN, Style GAN, DC GAN, SRGAN.</li>
+                <li>Tried achieving similar result as Canny edge detector using GAN models and used OpenCV, PyTorch.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Sanford Health Hack, Runner Up - Health Memo (Team Lead/App Developer)</strong></div>
+            <div class="job-meta">Sep 2022 - Oct 2022</div>
+            <div class="job-description">
+              <ul>
+                <li>Pitched a business plan and prototyped an iOS app that helped to keep logs of users' health.</li>
+                <li>Earned Second place and people's choice award out of 20 teams winning total of $9,000 prize.</li>
+                <li>Prototyped app using Swift, Parse, and Google API i.e. embedded Google's Text-to-Speech and Speech-to-Text feature.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Twitter Clone, CodePath Project (iOS App)</strong></div>
+            <div class="job-meta">Oct 2020 – Oct 2020</div>
+            <div class="job-description">
+              <ul>
+                <li>Created a clone of Twitter using Swift, Storyboard where users could login and stay connected without losing credentials and tweets.</li>
+                <li>Implemented features like retweeting, favoriting a tweet, and infinite scrolling for a better user experience.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Sanford Health Hack Runner Up - Pill Buddy (Team Lead)</strong></div>
+            <div class="job-meta">Sep 2019 - Oct 2019</div>
+            <div class="job-description">
+              <ul>
+                <li>Developed mobile application and presented product pitch, earned second place out of 12 teams and won prize pool of $7,000.</li>
+                <li>Designed a user-friendly interface that allowed 5,000+ elderly Sanford patients to check their drug interactions to prevent overdose and help them know less common intersections between drugs.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Leadership & Affiliations</h2>
+        <ul>
+          <li>
+            <div class="job-title"><strong>Conference Volunteer</strong></div>
+            <div class="job-meta">ACM SIGGRAPH 2024, Denver, CO | Jul 2024 – Aug 2024</div>
+            <div class="job-description">
+              <ul>
+                <li>Supported conference operations by assisting attendees and staff across high-traffic areas (e.g., registration/session/exhibit support), ensuring smooth day-to-day flow.</li>
+                <li>Communicated clearly with diverse attendees and organizers to resolve issues quickly and keep activities running on schedule.</li>
+                <li>Gained exposure to current industry/research directions in computer graphics, games, and interactive tech through on-site programming and demos.</li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="job-title"><strong>Communication Director</strong></div>
+            <div class="job-meta">Augustana Student Association, Sioux Falls, SD | Aug 2019 – May 2020</div>
+            <div class="job-description">
+              <ul>
+                <li>Led team of 6 responsible for conducting Transparency and increase the visibility of 100+ clubs.</li>
+                <li>Improved the overall experience of student on student and update the Association website.</li>
+                <li>Organized 2019 Senate election with a successful participant of 30+ students.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="resume-section">
+        <h2>Certificates</h2>
+        <ul>
+          <li>
+            <strong>Deep Learning Specialization (Coursera):</strong>
+            <ul style="margin-top: 0.5rem; list-style: disc; margin-left: 1.5rem;">
+              <li>Sequence Models (Mar 8, 2023)</li>
+              <li>Convolutional Neural Networks (Feb 11, 2023)</li>
+              <li>Structuring Machine Learning Projects (Jan 6, 2023)</li>
+              <li>Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization (Oct 19, 2022)</li>
+              <li>Neural Networks and Deep Learning (Sep 23, 2022)</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Broadway Course Completion</strong> (HTML, CSS, JavaScript) - 2016
+          </li>
+        </ul>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tabName, buttonElement) {
+      // Hide all tab contents
+      document.getElementById('resume-content').classList.remove('active');
+      document.getElementById('cv-content').classList.remove('active');
+      
+      // Remove active class from all buttons
+      const buttons = document.querySelectorAll('.tab-button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      
+      // Show selected tab content
+      document.getElementById(tabName + '-content').classList.add('active');
+      
+      // Add active class to clicked button
+      buttonElement.classList.add('active');
+    }
+  </script>
+</body>
+</html>
