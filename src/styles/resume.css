@@ -1,0 +1,292 @@
+/* =========================================================
+   RESUME.CSS — Dark-themed resume page styles
+   Requires theme.css to be loaded first
+   ========================================================= */
+
+/* Page wrapper */
+.resume-page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem max(1rem, 4vw) 5rem;
+}
+
+/* ---------------------------------------------------------
+   Page heading
+   --------------------------------------------------------- */
+.resume-name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  color: var(--color-text-primary);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.25rem;
+}
+
+/* ---------------------------------------------------------
+   Contact Info
+   --------------------------------------------------------- */
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin: 1.5rem 0 2rem;
+}
+
+.contact-info a {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s ease;
+}
+
+.contact-info a:hover {
+  color: var(--color-accent-2);
+}
+
+/* ---------------------------------------------------------
+   Download Section
+   --------------------------------------------------------- */
+.download-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  margin: 2rem 0;
+}
+
+.download-section p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.download-btn {
+  display: inline-block;
+  background: var(--color-accent-1);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+}
+
+.download-btn:hover {
+  opacity: 0.85;
+  box-shadow: 0 0 20px var(--color-accent-glow);
+}
+
+@media (max-width: 480px) {
+  .download-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   Tab Navigation
+   --------------------------------------------------------- */
+.tab-container {
+  display: flex;
+  gap: 0.5rem;
+  margin: 2rem 0;
+}
+
+.tab-button {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.6rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.tab-button:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-secondary);
+}
+
+.tab-button.active {
+  color: var(--color-accent-2);
+  border-color: var(--color-accent-2);
+  background: rgba(6, 182, 212, 0.08);
+}
+
+.tab-content {
+  display: none;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .tab-container {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .tab-button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ---------------------------------------------------------
+   Resume Sections
+   --------------------------------------------------------- */
+.resume-section {
+  margin: 2.5rem 0;
+}
+
+.resume-section h2 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-1);
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resume-section > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.resume-section > ul > li {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.resume-section > ul > li:last-child {
+  border-bottom: none;
+}
+
+/* ---------------------------------------------------------
+   Job Entries
+   --------------------------------------------------------- */
+.job-title {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.job-title strong {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.job-meta {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.job-description {
+  margin-top: 0.5rem;
+}
+
+.job-description ul {
+  margin: 0.5rem 0 0 1.25rem;
+  list-style: disc;
+}
+
+.job-description li {
+  color: var(--color-text-secondary);
+  padding: 0.25rem 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  border-bottom: none !important;
+}
+
+/* Education entries */
+.resume-section .edu-entry {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.resume-section .edu-entry:last-child {
+  border-bottom: none;
+}
+
+.resume-section .edu-entry strong {
+  display: block;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.resume-section .edu-entry em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------------------
+   Skills Section
+   --------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  margin-top: 0.5rem;
+}
+
+.skill-category-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.skill-tags-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ---------------------------------------------------------
+   Certificates — nested list
+   --------------------------------------------------------- */
+.cert-list {
+  margin: 0.5rem 0 0 1.25rem !important;
+  list-style: disc !important;
+}
+
+.cert-list li {
+  color: var(--color-text-secondary);
+  font-size: 0.88rem;
+  padding: 0.2rem 0;
+  border-bottom: none !important;
+}

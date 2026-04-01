@@ -1,0 +1,366 @@
+/* =========================================================
+   THEME.CSS — Shared dark design system foundation
+   Loaded on every page before page-specific styles
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. CSS Custom Properties
+   --------------------------------------------------------- */
+:root {
+  /* Backgrounds */
+  --color-bg:        #0a0a0f;
+  --color-surface:   #111118;
+  --color-surface-2: #1a1a26;
+  --color-border:    #2a2a3d;
+
+  /* Accents */
+  --color-accent-1:    #7c3aed;
+  --color-accent-2:    #06b6d4;
+  --color-accent-glow: rgba(124, 58, 237, 0.25);
+
+  /* Text */
+  --color-text-primary:   #f0f0f8;
+  --color-text-secondary: #9898b8;
+  --color-text-muted:     #55556a;
+
+  /* Skill / tag tokens */
+  --color-tag-bg:     rgba(124, 58, 237, 0.12);
+  --color-tag-border: rgba(124, 58, 237, 0.35);
+
+  /* Typography */
+  --font-display: 'Inter', sans-serif;
+  --font-mono:    'JetBrains Mono', monospace;
+
+  /* Type scale */
+  --text-hero:  clamp(3rem, 8vw, 6rem);
+  --text-h2:    clamp(1.75rem, 4vw, 2.5rem);
+  --text-h3:    1.25rem;
+  --text-body:  1rem;
+  --text-small: 0.875rem;
+  --text-tag:   0.75rem;
+}
+
+/* ---------------------------------------------------------
+   2. Global Reset & Base
+   --------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-display);
+  min-height: 100vh;
+  padding-top: 56px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------------------------------------------------------
+   3. Custom Scrollbar (webkit)
+   --------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-1);
+}
+
+/* ---------------------------------------------------------
+   4. Keyframes
+   --------------------------------------------------------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* ---------------------------------------------------------
+   5. Section Typography Utilities
+   --------------------------------------------------------- */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-accent-2);
+  margin-bottom: 0.75rem;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-h2);
+  color: var(--color-text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+}
+
+/* ---------------------------------------------------------
+   6. Skill Tags
+   --------------------------------------------------------- */
+.skill-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-secondary);
+  background: var(--color-tag-bg);
+  border: 1px solid var(--color-tag-border);
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.skill-tag:hover {
+  color: var(--color-accent-1);
+  border-color: var(--color-accent-1);
+  background: rgba(124, 58, 237, 0.2);
+}
+
+/* ---------------------------------------------------------
+   7. Project Cards
+   --------------------------------------------------------- */
+.project-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-accent-1), var(--color-accent-2));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover {
+  border-color: var(--color-accent-1);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px var(--color-accent-glow);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card__number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+}
+
+.project-card__tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-2);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.project-card__desc {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.project-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.project-card__tech {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.project-card__link {
+  color: var(--color-accent-1);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.project-card__link:hover {
+  transform: translate(2px, -2px);
+}
+
+/* ---------------------------------------------------------
+   8. Lightbox
+   --------------------------------------------------------- */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.92);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox.is-open {
+  display: flex;
+}
+
+.lightbox.is-visible {
+  opacity: 1;
+}
+
+.lightbox__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox__image {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.8);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.lightbox__close:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-secondary);
+}
+
+.lightbox__prev,
+.lightbox__next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 1.25rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox__prev { left: 1.5rem; }
+.lightbox__next { right: 1.5rem; }
+
+.lightbox__prev:hover,
+.lightbox__next:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text-primary);
+}
+
+.lightbox__caption {
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+}

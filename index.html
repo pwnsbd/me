@@ -3,73 +3,447 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pawan Subedi | Personal Website</title>
-  <!-- Landing page specific styles -->
-  <link rel="stylesheet" href="./src/styles/landing.css">
-  <!-- Navigation bar styles -->
+  <title>Pawan Subedi</title>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind config must come before CDN -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg:       '#0a0a0f',
+            surface:  '#111118',
+            surface2: '#1a1a26',
+            border:   '#2a2a3d',
+            accent1:  '#7c3aed',
+            accent2:  '#06b6d4',
+            ptxt:     '#f0f0f8',
+            stxt:     '#9898b8',
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Design system -->
+  <link rel="stylesheet" href="./src/styles/theme.css">
+  <!-- Navigation -->
   <link rel="stylesheet" href="./src/styles/nav.css">
-  <!-- Google Fonts -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap">
+  <style>
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      filter: saturate(0.6) brightness(0.85);
+      transition: filter 0.8s ease;
+    }
+    .hero:hover .hero__img {
+      filter: saturate(1) brightness(1);
+    }
+    .hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(10, 10, 15, 0.25) 0%,
+        rgba(10, 10, 15, 0.6) 55%,
+        rgba(10, 10, 15, 1) 100%
+      );
+    }
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      padding: 0 max(2rem, 8vw) 5rem;
+    }
+    .hero__name {
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: 900;
+      color: var(--color-text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.0;
+      margin-bottom: 1rem;
+    }
+    .hero__tagline {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-text-secondary);
+    }
+    .hero__scroll {
+      position: absolute;
+      bottom: 2rem;
+      right: max(2rem, 8vw);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+    .hero__scroll-arrow {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--color-text-muted));
+      animation: scrollBounce 1.8s ease-in-out infinite;
+    }
+
+    /* ---- Page sections ---- */
+    .page-section {
+      padding: 6rem max(2rem, 8vw);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ---- About ---- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-quote {
+      border-left: 3px solid var(--color-accent-1);
+      padding: 0.75rem 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      background: var(--color-surface);
+      border-radius: 0 6px 6px 0;
+    }
+    .about-bio p {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      margin-bottom: 1.25rem;
+    }
+    .about-bio p:last-of-type {
+      margin-bottom: 1.75rem;
+    }
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .social-link {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .social-link:hover {
+      color: var(--color-accent-2);
+      border-color: var(--color-accent-2);
+      background: rgba(6, 182, 212, 0.07);
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+    }
+
+    /* ---- Projects grid ---- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ---- Skills ---- */
+    .skills-cols {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .skills-col-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--color-text-muted);
+      margin-bottom: 1rem;
+    }
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    @media (max-width: 768px) {
+      .skills-cols {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .skills-cols {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---- Footer ---- */
+    .site-footer {
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      padding: 2rem max(2rem, 8vw);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.06em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+      letter-spacing: 0.06em;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: var(--color-accent-2);
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Navigation bar -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="./src/photography.html" class="nav-link">Photography</a>
-      <a href="./src/resume.html" class="nav-link">Resume</a>
+  <!-- Navigation -->
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">PS</a>
+      <div class="nav-links">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="./src/photography.html" class="nav-link">Photography</a>
+        <a href="./src/resume.html" class="nav-link">Resume</a>
+      </div>
     </div>
   </nav>
 
-  <!-- Main content container -->
-  <div class="landing-container">
-    <div class="hero-section">
-      <img 
-        src="./src/assets/sf_evening_sunset_2.jpg" 
-        alt="San Francisco Evening Sunset" 
-        class="landing-image"
-      >
+  <!-- =====================================================
+       HERO
+       ===================================================== -->
+  <section class="hero" id="hero">
+    <img
+      src="./src/assets/sf_evening_sunset_2.jpg"
+      alt="San Francisco Evening Sunset"
+      class="hero__img"
+      width="1920"
+      height="1280"
+    >
+    <div class="hero__overlay"></div>
+    <div class="hero__content">
+      <h1 class="hero__name">PAWAN<br>SUBEDI</h1>
+      <p class="hero__tagline">Engineer &nbsp;·&nbsp; Artist &nbsp;·&nbsp; Visualist</p>
     </div>
-    
-    <div class="content-section">
-      <h1 class="greeting">Hello, fellow traveller!</h1>
-      <p class="landing-text">
-        Looks like you found the page in your surf!<br>
-        Just a guy, trying to figure out what to do.
-      </p>
-      
-      <p class="landing-text">
-        <a href="./src/photography.html" class="highlight-link">Artist</a> by heart and problem solver by mind.
-      </p>
+    <div class="hero__scroll">
+      <div class="hero__scroll-arrow"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
 
-      <p class="landing-text">
-        Currently studying at Texas A&M in a program called "Master of Science in Visualization."
-      </p>
-
-      <div class="links-section">
-        <p class="landing-text">
-          You can find my photography work <a href="https://www.instagram.com/pawan_subedi/" target="_blank" rel="noopener noreferrer" class="external-link">here</a>, which is also my personal account.
-        </p>
-        <p class="landing-text">
-          And you can find my GitHub repository <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="external-link">here</a>.
-        </p>
-      </div>
-
-      <div class="quote-section">
-        <p class="landing-text">
-          I like writing broken quotes.
-        </p>
-        <blockquote class="quote">
-          <i>"Jack of all Trades but Master of none, but soon to be master of some."</i>
+  <!-- =====================================================
+       ABOUT
+       ===================================================== -->
+  <section id="about">
+    <div class="page-section">
+      <p class="section-label">About</p>
+      <h2 class="section-heading">Hello, fellow traveller.</h2>
+      <div class="about-grid">
+        <blockquote class="about-quote">
+          "Jack of all Trades but Master of none,<br>but soon to be master of some."
         </blockquote>
-        <p class="landing-text">
-          You can see small progress, <a href="https://www.instagram.com/alle_ory/" target="_blank" rel="noopener noreferrer" class="external-link">here</a><br>
-          Mastering it slowly but surely!<br>
-          I just got bored with lightroom and wanted to try something new.
-        </p>
+        <div class="about-bio">
+          <p>
+            Looks like you found the page in your surf! Just a guy trying to figure out what to do —
+            an <a href="./src/photography.html" style="color: var(--color-accent-2);">artist</a> by heart
+            and a problem solver by mind.
+          </p>
+          <p>
+            Currently pursuing a Master of Science in Visualization at Texas A&M, where I build
+            interactive experiences, AR prototypes, and explore the intersection of deep learning
+            and computer graphics.
+          </p>
+          <p>
+            Before grad school, I spent three years as a System Software Engineer at HPE, building
+            tooling and test automation that engineers rely on every day. I also dabble in drawing,
+            photography, and slowly mastering new creative tools.
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+            <a href="https://www.instagram.com/pawan_subedi/" target="_blank" rel="noopener noreferrer" class="social-link">Photography</a>
+            <a href="https://www.instagram.com/alle_ory/" target="_blank" rel="noopener noreferrer" class="social-link">alle_ory</a>
+            <a href="./src/resume.html" class="social-link">Resume</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- =====================================================
+       PROJECTS
+       ===================================================== -->
+  <section id="projects" style="background: var(--color-surface);">
+    <div class="page-section">
+      <p class="section-label">Selected Work</p>
+      <h2 class="section-heading">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-card__number">01</div>
+          <div class="project-card__tag">Deep Learning</div>
+          <h3 class="project-card__title">GAN Research</h3>
+          <p class="project-card__desc">
+            Reproduced and experimented with CycleGAN, StyleGAN, DCGAN, and SRGAN architectures,
+            exploring edge and structure-preserving generative outputs.
+          </p>
+          <div class="project-card__footer">
+            <span class="project-card__tech">PyTorch · OpenCV · Python</span>
+            <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer" class="project-card__link">↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__number">02</div>
+          <div class="project-card__tag">Unity / AR</div>
+          <h3 class="project-card__title">AR & Game Prototypes</h3>
+          <p class="project-card__desc">
+            Built interactive AR experiences including ScavengAR Hunt — a staged AR scavenger hunt —
+            using Unity, Vuforia, and AR Foundation with complete gameplay loops.
+          </p>
+          <div class="project-card__footer">
+            <span class="project-card__tech">Unity · Vuforia · C#</span>
+            <span class="project-card__link" style="cursor: default; opacity: 0.3;">↗</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__number">03</div>
+          <div class="project-card__tag">Swift / iOS</div>
+          <h3 class="project-card__title">Health Memo</h3>
+          <p class="project-card__desc">
+            Hackathon Runner-Up ($9K prize) — a health log iOS app with Google Text-to-Speech
+            integration. Led a team of 4 to 2nd place out of 20 teams at Sanford Health Hack.
+          </p>
+          <div class="project-card__footer">
+            <span class="project-card__tech">Swift · Parse · Google API</span>
+            <span class="project-card__link" style="cursor: default; opacity: 0.3;">↗</span>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__number">04</div>
+          <div class="project-card__tag">Python / Tooling</div>
+          <h3 class="project-card__title">HPE Internal GUI Tool</h3>
+          <p class="project-card__desc">
+            Created a GUI tool used by 300+ HPE employees to execute CLI-based workflows more
+            efficiently. Also built shared Python/PyTest utilities that reduced script length by ~40%.
+          </p>
+          <div class="project-card__footer">
+            <span class="project-card__tech">Python · PyTest · Django</span>
+            <span class="project-card__link" style="cursor: default; opacity: 0.3;">↗</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       SKILLS
+       ===================================================== -->
+  <section id="skills">
+    <div class="page-section">
+      <p class="section-label">Toolkit</p>
+      <h2 class="section-heading">Skills</h2>
+      <div class="skills-cols">
+        <div>
+          <p class="skills-col-label">Languages</p>
+          <div class="skills-tags">
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">HTML/CSS</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills-col-label">Engines & Tools</p>
+          <div class="skills-tags">
+            <span class="skill-tag">Unreal Engine</span>
+            <span class="skill-tag">Unity</span>
+            <span class="skill-tag">Houdini</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">OpenCV</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills-col-label">Research</p>
+          <div class="skills-tags">
+            <span class="skill-tag">Deep Learning</span>
+            <span class="skill-tag">Reinforcement Learning</span>
+            <span class="skill-tag">Computer Vision</span>
+            <span class="skill-tag">GANs</span>
+            <span class="skill-tag">AR/VR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+  <footer class="site-footer">
+    <span class="footer-copy">PS &nbsp;·&nbsp; 2026</span>
+    <div class="footer-links">
+      <a href="https://github.com/pwnsbd" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://www.instagram.com/pawan_subedi/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.instagram.com/alle_ory/" target="_blank" rel="noopener noreferrer">alle_ory</a>
+    </div>
+  </footer>
+
 </body>
 </html>
