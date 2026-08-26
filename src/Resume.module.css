@@ -1,0 +1,14 @@
+.back {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--pencil-blue);
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.back:hover {
+  opacity: 1;
+}

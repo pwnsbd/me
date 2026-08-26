@@ -1,0 +1,166 @@
+.root {
+  position: absolute;
+  top: 72px;
+  left: 56px;
+}
+
+.svg {
+  width: 500px;
+  display: block;
+}
+
+.name {
+  font-family: 'Caveat', cursive;
+  font-size: 52px;
+  font-weight: 700;
+  fill: var(--ink);
+  letter-spacing: -1px;
+}
+
+.ghost {
+  font-family: 'Caveat', cursive;
+  font-size: 52px;
+  font-weight: 700;
+  fill: var(--ink);
+  letter-spacing: -1px;
+  opacity: 0.13;
+}
+
+.summary {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 18px;
+  fill: var(--ink-mid);
+}
+
+/* ── walking stickman ── */
+
+/* slides from left edge of the underline to its end, then fades out */
+/* 384 SVG units × (500px/520 viewBox) ≈ 369px */
+.walkGroup {
+  animation: walkSlide 5s ease-in-out forwards;
+}
+@keyframes walkSlide {
+  0%   { transform: translateX(-369px); opacity: 1; }
+  68%  { transform: translateX(0);      opacity: 1; }
+  78%  { transform: translateX(0);      opacity: 0; }
+  100% { transform: translateX(0);      opacity: 0; }
+}
+
+/* fades in after walk completes */
+.sitGroup {
+  animation: sitFade 5s ease-in-out forwards;
+}
+@keyframes sitFade {
+  0%, 71% { opacity: 0; }
+  82%     { opacity: 1; }
+  100%    { opacity: 1; }
+}
+
+/*
+  Leg groups contain thigh + knee circle + calf.
+  Right leg group: elements span x[0,2] y[-13,0] → left-top = (0,-13) = hip.
+  Left  leg group: elements span x[-2,0] y[-13,0] → right-top = (0,-13) = hip.
+  Arm groups: right spans x[0,9] y[-19,-11] → left-top = (0,-19) = shoulder.
+              left  spans x[-9,0] y[-19,-11] → right-top = (0,-19) = shoulder.
+*/
+
+/* RIGHT leg — starts back, swings forward (phase matches left arm) */
+.wRLeg {
+  transform-box: fill-box;
+  transform-origin: left top;
+  animation: legSwing 0.46s ease-in-out infinite;
+}
+/* LEFT leg — opposite phase */
+.wLLeg {
+  transform-box: fill-box;
+  transform-origin: right top;
+  animation: legSwing 0.46s ease-in-out infinite;
+  animation-delay: -0.23s;
+}
+@keyframes legSwing {
+  0%, 100% { transform: rotate(-28deg); }
+  50%      { transform: rotate(28deg);  }
+}
+
+/* RIGHT arm — swings forward when right leg is back (opposite phase to right leg) */
+.wRArm {
+  transform-box: fill-box;
+  transform-origin: left top;
+  animation: armSwing 0.46s ease-in-out infinite;
+  animation-delay: -0.23s;
+}
+/* LEFT arm — opposite phase to right arm */
+.wLArm {
+  transform-box: fill-box;
+  transform-origin: right top;
+  animation: armSwing 0.46s ease-in-out infinite;
+}
+@keyframes armSwing {
+  0%, 100% { transform: rotate(22deg);  }
+  50%      { transform: rotate(-22deg); }
+}
+
+/*
+  headLook rotates from the neck attachment point.
+  Head group bbox ≈ x[-2,8] y[-28,-18] (cx=3 cy=-23 r=5).
+  Neck at (1,-18): x-offset = 1-(-2)=3 of 10 → 30%, y-offset = 10 of 10 → 100%.
+*/
+.headLook {
+  transform-box: fill-box;
+  transform-origin: 30% 100%;
+  animation: headLook 11s ease-in-out infinite;
+  animation-delay: 4.5s;
+}
+@keyframes headLook {
+  0%,  6%  { transform: rotate(0deg);  }
+  13%      { transform: rotate(-6deg); }   /* tilt back — toward viewer */
+  24%      { transform: rotate(-6deg); }
+  31%, 46% { transform: rotate(0deg);  }   /* return + linger down */
+  53%      { transform: rotate(-2deg); }   /* slight tilt — side glance */
+  63%      { transform: rotate(-2deg); }
+  70%, 80% { transform: rotate(0deg);  }   /* return + linger */
+  86%      { transform: rotate(5deg);  }   /* tilt forward — looking away */
+  93%      { transform: rotate(5deg);  }
+  100%     { transform: rotate(0deg);  }   /* return */
+}
+
+/* eyes translate within the head in sync with the head tilt */
+.eyeGaze {
+  animation: eyeGaze 11s ease-in-out infinite;
+  animation-delay: 4.5s;
+}
+@keyframes eyeGaze {
+  0%,  6%  { transform: translate(0px,    0px);   }
+  13%      { transform: translate(0px,   -2.2px); }  /* up — viewer */
+  24%      { transform: translate(0px,   -2.2px); }
+  31%, 46% { transform: translate(0px,    0px);   }
+  53%      { transform: translate(-1.2px,-0.6px); }  /* left — side glance */
+  63%      { transform: translate(-1.2px,-0.6px); }
+  70%, 80% { transform: translate(0px,    0px);   }
+  86%      { transform: translate(0.4px,  1.3px); }  /* down-forward — away */
+  93%      { transform: translate(0.4px,  1.3px); }
+  100%     { transform: translate(0px,    0px);   }
+}
+
+/* dangling leg groups — knee circle travels with the dangle */
+.sitLegL {
+  transform-box: fill-box;
+  transform-origin: right top;
+  animation: dangleL 2.2s ease-in-out infinite alternate;
+  animation-delay: 4.1s;
+}
+@keyframes dangleL {
+  from { transform: rotate(-11deg); }
+  to   { transform: rotate(9deg);   }
+}
+
+.sitLegR {
+  transform-box: fill-box;
+  transform-origin: left top;
+  animation: dangleR 2.2s ease-in-out infinite alternate;
+  animation-delay: 3.1s;
+}
+@keyframes dangleR {
+  from { transform: rotate(9deg);   }
+  to   { transform: rotate(-11deg); }
+}

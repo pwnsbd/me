@@ -1,0 +1,38 @@
+/* Desk surface — perspective origin here */
+.desk {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #A8A090;
+  overflow: hidden;
+}
+
+/* Notebook — tilted in 3D space */
+.notebook {
+  display: flex;
+  flex-direction: row;
+  width: min(1100px, 95vw);
+  height: min(760px, 90vh);
+  position: relative;
+}
+
+/* ── Front face (binding + paper) ── */
+.front {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 8px 28px rgba(20,16,8,0.4);
+}
+
+/* Paper area */
+.paper {
+  flex: 1;
+  background: var(--paper);
+  filter: url(#grain);
+  position: relative;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg transform='rotate(45 16 16)'%3E%3Crect x='13' y='4' width='6' height='18' rx='1' fill='%23F5C842'/%3E%3Crect x='13' y='20' width='6' height='5' fill='%23E8A020'/%3E%3Cpolygon points='13,25 19,25 16,30' fill='%231C1710'/%3E%3Crect x='13' y='4' width='6' height='3' rx='1' fill='%23B0A090'/%3E%3Cline x1='13' y1='7' x2='19' y2='7' stroke='%23A09080' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E") 28 28, crosshair;
+}
+

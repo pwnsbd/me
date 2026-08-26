@@ -1,0 +1,30 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --paper:       #F0EAD6;
+  --paper-dark:  #E4D9C0;
+  --ink:         #1C1710;
+  --ink-mid:     #4A4235;
+  --ink-faint:   #8C7E68;
+  --pencil-blue: #3A5F8A;
+
+  --font-sketch: 'Caveat', 'Patrick Hand', cursive;
+  --font-hand:   'Architects Daughter', 'Patrick Hand', cursive;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  background: #A8A090;
+}
+
+body {
+  background: #A8A090;
+  font-family: var(--font-sketch);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}

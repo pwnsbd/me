@@ -1,0 +1,68 @@
+/* gentle breathing sway — meditative rock */
+.breathe {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: breathe 6s ease-in-out infinite alternate;
+}
+
+@keyframes breathe {
+  from { transform: rotate(-1.2deg); }
+  to   { transform: rotate(1.2deg);  }
+}
+
+/* ── aura rings — expand, rotate, and fade outward for organic amoeba feel ── */
+.aura {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: amoebaPulse 1.9s ease-out infinite;
+}
+.a1 { animation-delay: 0s;    }
+.a2 { animation-delay: 0.63s; }
+.a3 { animation-delay: 1.26s; }
+
+@keyframes amoebaPulse {
+  0%   { transform: scale(0.5) rotate(-5deg);  opacity: 0.55; }
+  70%  { opacity: 0.15; }
+  100% { transform: scale(2.0) rotate(12deg);  opacity: 0; }
+}
+
+/* ── thought bubbles — sequential spring pop-in ── */
+.bubble1 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s both;
+}
+.bubble2 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both;
+}
+.bubble3 {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubblePop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.85s both;
+}
+.mainBubble {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bubblePop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 1.25s both;
+}
+
+@keyframes bubblePop {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ── steam lines — draw in after cloud appears ── */
+.steam {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: drawSteam 0.6s ease-out both;
+}
+.s0 { animation-delay: 1.80s; }
+.s1 { animation-delay: 2.05s; }
+.s2 { animation-delay: 2.30s; }
+
+@keyframes drawSteam {
+  to { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,111 @@
+.page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #C8BEA8;
+}
+
+/* ── Paper ── */
+.paper {
+  width: min(720px, 92vw);
+  min-height: 480px;
+  background: var(--paper);
+  padding: 52px 60px 48px;
+  position: relative;
+  /* Grain filter over everything */
+  filter: url(#grain);
+  /* Soft drop shadow for lifted-paper feel */
+  box-shadow:
+    2px 4px 0px #B8AE98,
+    4px 8px 24px rgba(30,24,12,0.22);
+}
+
+/* ── Heading — Caveat, heavy, pencil-displaced ── */
+.heading {
+  font-family: var(--font-sketch);
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  filter: url(#pencil-heavy);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+/* ── Subheading — Patrick Hand feel ── */
+.subheading {
+  font-family: var(--font-hand);
+  font-size: 16px;
+  letter-spacing: 0.18em;
+  color: var(--ink-mid);
+  filter: url(#pencil);
+  text-transform: lowercase;
+  margin-bottom: 32px;
+}
+
+/* ── Hand-drawn divider — SVG line ── */
+.divider {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 28px;
+  background: none;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--ink-mid);
+  filter: url(#pencil);
+  opacity: 0.55;
+}
+
+/* ── Section ── */
+.section {
+  margin-bottom: 24px;
+}
+
+.label {
+  font-family: var(--font-hand);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  filter: url(#pencil);
+  margin-bottom: 6px;
+}
+
+.body {
+  font-family: var(--font-sketch);
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+  filter: url(#pencil);
+  max-width: 480px;
+}
+
+/* ── Rough underline-style rule ── */
+.sketchLine {
+  width: 120px;
+  height: 3px;
+  background: var(--pencil-blue);
+  filter: url(#pencil);
+  opacity: 0.7;
+  margin: 28px 0 10px;
+}
+
+/* ── Caption ── */
+.caption {
+  font-family: var(--font-hand);
+  font-size: 13px;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  filter: url(#pencil);
+}

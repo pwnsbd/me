@@ -1,0 +1,14 @@
+.binding {
+  width: 42px;
+  flex-shrink: 0;
+  background: linear-gradient(to right, #C4BAA8, #D0C8B8);
+  border-right: 1px solid #B0A892;
+  position: relative;
+  overflow: visible;
+}
+
+.svg {
+  display: block;
+  width: 42px;
+  height: 100%;
+}
