@@ -1,0 +1,29 @@
+.card {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  cursor: pointer;
+  filter: drop-shadow(3px 8px 14px rgba(20, 16, 8, 0.28));
+}
+
+.card:hover {
+  transform: rotate(0deg) translateY(-6px);
+  filter: drop-shadow(5px 14px 22px rgba(20, 16, 8, 0.38));
+}
+
+.svg {
+  width: 320px;
+  display: block;
+}
+
+.tag {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 13px;
+  color: var(--paper);
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+}

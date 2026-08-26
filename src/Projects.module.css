@@ -1,14 +1,73 @@
-.back {
-  position: absolute;
-  top: 24px;
-  left: 32px;
-  font-family: var(--font-hand);
-  font-size: 18px;
-  color: var(--pencil-blue);
-  text-decoration: none;
-  opacity: 0.7;
+.desk {
+  width: 100vw;
+  height: 100vh;
+  background: #A8A090;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
-.back:hover {
-  opacity: 1;
+/* ── back link ── */
+.back {
+  position: absolute;
+  top: 28px;
+  left: 36px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 16px;
+  color: var(--paper);
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.15s;
+  letter-spacing: 0.02em;
+}
+.back:hover { opacity: 1; }
+
+/* ── section title ── */
+.titleWrap {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.titleSvg {
+  width: 260px;
+  display: block;
+}
+
+/* ── horizontal rail ── */
+.rail {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;        /* Firefox */
+  padding: 48px 0 24px;
+}
+.rail::-webkit-scrollbar { display: none; }
+.rail:active { cursor: grabbing; }
+
+.track {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 48px;
+  padding: 0 120px;
+  width: max-content;
+}
+
+/* ── drag hint ── */
+.hint {
+  position: absolute;
+  bottom: 28px;
+  right: 40px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 13px;
+  color: var(--paper);
+  opacity: 0.4;
+  pointer-events: none;
+  letter-spacing: 0.04em;
 }
