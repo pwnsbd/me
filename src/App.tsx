@@ -4,8 +4,10 @@ import { Page } from './Page';
 import { Projects } from './Projects';
 import { Resume } from './Resume';
 import { Writing } from './Writing';
+import { usePencilSound } from './usePencilSound';
 
 export default function App() {
+  usePencilSound();
   return (
     <BrowserRouter>
       <Routes>
