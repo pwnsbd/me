@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Binding } from './Binding';
+import { SvgFilters } from './SvgFilters';
+import { BindingNav } from './BindingNav';
 import { ProjectWindow } from './ProjectWindow';
 import styles from './Projects.module.css';
 
@@ -42,8 +43,8 @@ export function Projects() {
 
   return (
     <div className={styles.desk}>
-      {/* Binding holds the pencil + grain filter defs */}
-      <Binding />
+      <SvgFilters />
+      <BindingNav sidebar />
 
       {/* back link */}
       <Link to="/" className={styles.back}>← back</Link>

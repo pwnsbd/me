@@ -1,7 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './BindingNav.module.css';
 
-export function BindingNav() {
+interface Props { sidebar?: boolean; }
+
+export function BindingNav({ sidebar }: Props) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -14,7 +16,7 @@ export function BindingNav() {
   }
 
   return (
-    <div className={styles.nav}>
+    <div className={`${styles.nav} ${sidebar ? styles.sidebar : ''}`}>
 
       {/* ── home ── */}
       <div

@@ -8,13 +8,15 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
+  /* shift everything right of the 54px sidebar nav */
+  padding-left: 54px;
 }
 
 /* ── back link ── */
 .back {
   position: absolute;
   top: 28px;
-  left: 36px;
+  left: 72px; /* 54px nav + 18px gap */
   font-family: 'Architects Daughter', cursive;
   font-size: 16px;
   color: var(--paper);
@@ -28,7 +30,7 @@
 /* ── section title ── */
 .titleWrap {
   position: absolute;
-  top: 20px;
+  top: 22px;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -44,7 +46,7 @@
   overflow-y: visible;
   cursor: grab;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;        /* Firefox */
+  scrollbar-width: none;
   padding: 48px 0 24px;
 }
 .rail::-webkit-scrollbar { display: none; }
@@ -55,7 +57,7 @@
   flex-direction: row;
   align-items: center;
   gap: 48px;
-  padding: 0 120px;
+  padding: 0 80px;
   width: max-content;
 }
 
