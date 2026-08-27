@@ -29,12 +29,12 @@ const RESUME = {
   role: 'Software Engineer · MS Visualization @ Texas A&M',
   summary:
     'Software engineer with four years across systems, web, and internal tooling at HPE and early-stage startups. Now focused on real-time graphics, games, and AR as an MS Visualization student and teaching assistant at Texas A&M.',
-  contact: [
-    'github.com/pawansubedi',
-    'linkedin.com/in/pawansubedi',
-    'justpawan7@gmail.com',
-    '605-728-1310',
-  ],
+  contact: {
+    github: 'https://github.com/pawansubedi',
+    linkedin: 'https://www.linkedin.com/in/pawan-subedi-6620b4128/',
+    email: 'justpawan7@gmail.com',
+    phone: '605-728-1310',
+  },
   experience: [
     {
       title: 'Teaching Assistant',
@@ -194,6 +194,36 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className={styles.heading}>{children}</h2>;
 }
 
+/* hand-inked social marks */
+function SocialLinks() {
+  return (
+    <div className={styles.social}>
+      <a className={styles.iconLink} href={RESUME.contact.github}
+        target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" filter="url(#pencil)">
+          <path fill="var(--ink)" d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48
+            0-.24-.01-.87-.01-1.71-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61
+            1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94
+            0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0 1 12 6.8c.85.004
+            1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0
+            3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85 0 1.34-.01 2.41-.01 2.74 0 .27.18.58.69.48A10.01 10.01
+            0 0 0 22 12c0-5.52-4.48-10-10-10z" />
+        </svg>
+      </a>
+      <a className={styles.iconLink} href={RESUME.contact.linkedin}
+        target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" filter="url(#pencil)">
+          <path fill="var(--ink)" d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14
+            2.94v5.67H9.35V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34
+            7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22
+            0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24
+            .77 23.2 0 22.22 0z" />
+        </svg>
+      </a>
+    </div>
+  );
+}
+
 /* one experience / project / leadership entry, flowing top-to-bottom */
 function EntryBlock({ entry }: { entry: Entry }) {
   return (
@@ -293,9 +323,13 @@ export function Resume() {
               <Squiggle width={240} />
               <p className={styles.role}>{RESUME.role}</p>
               <p className={styles.summary}>{RESUME.summary}</p>
-              <ul className={styles.contact}>
-                {RESUME.contact.map((c) => <li key={c}>{c}</li>)}
-              </ul>
+              <div className={styles.contact}>
+                <SocialLinks />
+                <a className={styles.contactLine} href={`mailto:${RESUME.contact.email}`}>
+                  {RESUME.contact.email}
+                </a>
+                <span className={styles.contactLine}>{RESUME.contact.phone}</span>
+              </div>
             </header>
 
             <Heading>where i&rsquo;ve worked</Heading>
@@ -337,7 +371,9 @@ export function Resume() {
 
             <div className={styles.closing}>
               <p className={styles.closeLine}>like what you see? the fastest way to reach me &mdash;</p>
-              <p className={styles.closeMail}>{RESUME.contact[2]}</p>
+              <a className={styles.closeMail} href={`mailto:${RESUME.contact.email}`}>
+                {RESUME.contact.email}
+              </a>
               <Squiggle width={180} />
               <p className={styles.signoff}>&mdash; Pawan</p>
             </div>
