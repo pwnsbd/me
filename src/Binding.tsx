@@ -1,12 +1,12 @@
 import styles from './Binding.module.css';
 import { BindingNav } from './BindingNav';
-import { SvgFilters } from './SvgFilters';
 
-export function Binding() {
+interface Props { hideNav?: boolean; }
+
+export function Binding({ hideNav }: Props) {
   return (
     <div className={styles.binding}>
-      <SvgFilters />
-      <BindingNav />
+      {!hideNav && <BindingNav />}
     </div>
   );
 }

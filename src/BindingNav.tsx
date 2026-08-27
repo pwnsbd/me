@@ -1,9 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './BindingNav.module.css';
 
-interface Props { sidebar?: boolean; }
+interface Props { sidebar?: boolean; noIcons?: boolean; }
 
-export function BindingNav({ sidebar }: Props) {
+export function BindingNav({ sidebar, noIcons }: Props) {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
@@ -17,6 +17,8 @@ export function BindingNav({ sidebar }: Props) {
 
   return (
     <div className={`${styles.nav} ${sidebar ? styles.sidebar : ''}`}>
+
+      {noIcons ? null : (<>
 
       {/* ── home ── */}
       <div
@@ -129,6 +131,7 @@ export function BindingNav({ sidebar }: Props) {
         </svg>
       </div>
 
+      </>)}
     </div>
   );
 }

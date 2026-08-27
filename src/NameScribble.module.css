@@ -1,11 +1,11 @@
 .root {
   position: absolute;
-  top: 72px;
-  left: 56px;
+  top: clamp(36px, 8vh, 72px);
+  left: clamp(28px, 3.9vw, 56px);
 }
 
 .svg {
-  width: 500px;
+  width: clamp(260px, 34.7vw, 500px);
   display: block;
 }
 

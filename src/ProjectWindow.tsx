@@ -41,6 +41,20 @@ export function ProjectWindow({ title, url, tag, rotate, children }: Props) {
 
           {/* content */}
           {children}
+
+          {/* coming soon stamp */}
+          <text
+            x="160" y="128"
+            fontFamily="'Caveat', cursive"
+            fontSize="28"
+            fontWeight="700"
+            fill="var(--ink)"
+            opacity="0.1"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            transform="rotate(-28, 160, 128)"
+            letterSpacing="2"
+          >coming soon</text>
         </g>
       </svg>
 

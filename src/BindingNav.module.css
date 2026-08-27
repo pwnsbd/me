@@ -7,12 +7,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 18px;
   padding: 10px 0;
 }
 
 .item {
-  width: 32px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,21 +42,23 @@
   display: block;
 }
 
+
 /* fixed left-edge sidebar mode — styled like the notebook binding */
 .sidebar {
   position: fixed;
   left: 0;
-  top: 0;
-  bottom: 0;
-  width: 42px;
+  top: 2.5vh;
+  height: 95vh;
+  width: 72px;
   transform: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 30px;
+  gap: 18px;
   padding: 10px 0;
   z-index: 20;
   background: linear-gradient(to right, #C4BAA8, #D0C8B8);
   border-right: 1px solid #B0A892;
+  filter: url(#grain);
 }
