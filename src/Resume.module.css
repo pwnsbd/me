@@ -23,10 +23,6 @@
     inset 0 10px 30px rgba(20,16,8,0.08),
     inset 0 -10px 30px rgba(20,16,8,0.08),
     0 8px 28px rgba(20,16,8,0.35);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -39,5 +35,297 @@
   height: 60px;
   overflow: visible;
   pointer-events: none;
+  z-index: 10;
+}
+
+/* ── horizontally scrolling sheet ── */
+.scroll {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% - 96px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 128px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 128px), transparent 100%);
+}
+.scroll::-webkit-scrollbar { display: none; }
+.scroll:active { cursor: grabbing; }
+
+/* the résumé is one continuous column of text that flows page-to-page
+   like a book — CSS multi-column, laid on its side so the pages run
+   left→right and the reader scrolls sideways. */
+.flow {
+  height: 100%;
+  padding: 44px 92px 44px 60px;
+  column-width: 560px;
+  column-gap: 74px;
+  column-fill: auto;
+  column-rule: 1px dashed rgba(28,23,16,0.22);
+  /* faint ruled paper lines running the length of the sheet */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 33px,
+    rgba(58,95,138,0.045) 33px 34px
+  );
+  background-position: 0 74px;
+}
+
+/* keep a block whole rather than splitting it across a page edge */
+.identityBlock,
+.entry,
+.edu,
+.skills,
+.skillRow,
+.listItem,
+.closing {
+  break-inside: avoid;
+}
+.heading {
+  break-after: avoid;
+}
+
+/* ── identity — the opening block of the flow ── */
+.identityBlock {
+  margin-bottom: 26px;
+}
+.name {
+  font-family: 'Caveat', cursive;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--ink);
+}
+.underline {
+  display: block;
+  height: 12px;
+  margin: 6px 0 2px;
+  overflow: visible;
+}
+.role {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 16.5px;
+  color: var(--ink-mid);
+  letter-spacing: 0.02em;
+}
+.summary {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--ink);
+  margin-top: 16px;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 18px;
+}
+.social {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 9px;
+}
+.iconLink {
+  display: inline-flex;
+  color: var(--ink);
+  opacity: 0.72;
+  transition: opacity 0.15s ease;
+}
+.iconLink:hover {
+  opacity: 1;
+}
+.iconLink svg {
+  width: 21px;
+  height: 21px;
+  display: block;
+  overflow: visible;
+}
+.contactLine {
+  display: block;
+  width: fit-content;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.03em;
+  line-height: 1.6;
+  text-decoration: none;
+}
+a.contactLine:hover {
+  color: var(--ink-mid);
+}
+
+/* ── section heading ── */
+.heading {
+  font-family: 'Caveat', cursive;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  margin: 24px 0 12px;
+}
+.identityBlock + .heading {
+  margin-top: 0;
+}
+
+/* ── one entry (experience / project / leadership) ── */
+.entry {
+  margin-bottom: 17px;
+}
+.entryHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+.entryTitle {
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+.entryOrg {
+  color: var(--ink-mid);
+}
+.entryPeriod {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 12.5px;
+  color: var(--ink-mid);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.entryPlace {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 1px;
+}
+.bullets {
+  list-style: none;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.bullets li {
+  position: relative;
+  padding-left: 17px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.bullets li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
+/* ── skills — label + values per row ── */
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.skillRow {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: baseline;
+}
+.skillLabel {
+  flex: 0 0 92px;
+  font-family: 'Caveat', cursive;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink-mid);
+}
+.skillItems {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* ── certificates / generic list ── */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.listItem {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* ── education ── */
+.edu {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-bottom: 12px;
+}
+.eduSchool {
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.eduDegree {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 14px;
+  color: var(--ink);
+}
+.eduMeta {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+}
+
+/* ── closing ── */
+.closing {
+  margin-top: 22px;
+}
+.closeLine {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink);
+}
+.closeMail {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--pencil-blue);
+  margin-top: 4px;
+}
+.signoff {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+/* ── drag hint ── */
+.hint {
+  position: absolute;
+  bottom: 26px;
+  right: 40px;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 13px;
+  color: var(--ink-faint);
+  opacity: 0.65;
+  pointer-events: none;
+  letter-spacing: 0.04em;
   z-index: 10;
 }
