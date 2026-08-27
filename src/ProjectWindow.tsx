@@ -35,6 +35,9 @@ export function ProjectWindow({ title, url, tag, rotate, children }: Props) {
           {/* url bar background */}
           <path d="M 75 11 C 170 10 255 11 308 12 L 308 25 C 255 26 170 25 75 24 Z"
             fill="var(--paper-dark)" stroke="var(--ink)" strokeWidth="0.7" opacity="0.6" />
+          {/* window title */}
+          <text x="160" y="21" fontFamily="'Caveat', cursive" fontSize="11" fontWeight="700"
+            fill="var(--ink)" textAnchor="middle" opacity="0.6">{title}</text>
           {/* url text */}
           <text x="116" y="21" fontFamily="'Architects Daughter', cursive" fontSize="7"
             fill="var(--ink-faint)">{url}</text>
