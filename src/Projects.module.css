@@ -8,15 +8,15 @@
   justify-content: center;
   overflow: hidden;
   position: relative;
-  /* shift everything right of the 54px sidebar nav */
-  padding-left: 54px;
+  /* shift everything right of the 42px binding sidebar */
+  padding-left: 42px;
 }
 
 /* ── back link ── */
 .back {
   position: absolute;
   top: 28px;
-  left: 72px; /* 54px nav + 18px gap */
+  left: 60px; /* 42px binding + 18px gap */
   font-family: 'Architects Daughter', cursive;
   font-size: 16px;
   color: var(--pencil-blue);
@@ -27,12 +27,11 @@
 }
 .back:hover { opacity: 1; }
 
-/* ── section title ── */
+/* ── section title — right side ── */
 .titleWrap {
   position: absolute;
   top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 40px;
 }
 .titleSvg {
   width: 260px;
