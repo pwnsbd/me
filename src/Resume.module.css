@@ -80,16 +80,18 @@
   flex: 0 0 96px;
 }
 
-/* each concertina fold — wide enough that ~1.5 folds show at once */
+/* each concertina fold — wide enough that ~1.5 folds show at once,
+   capped so lines stay readable on big monitors */
 .panel {
   position: relative;
   flex-shrink: 0;
-  width: max(560px, calc((100vw - 160px) / 1.5));
+  width: clamp(560px, calc((100vw - 160px) / 1.5), 1040px);
   height: 100%;
-  padding: 52px 60px 56px;
+  padding: 56px 60px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  justify-content: center;
+  gap: 30px;
   scroll-snap-align: start;
 }
 .panel + .panel {
@@ -107,14 +109,11 @@
   pointer-events: none;
 }
 
-/* body region that stretches to fill the fold's full height */
+/* body region — compact stack; the fold centres it vertically */
 .fill {
-  flex: 1;
-  min-height: 0;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  gap: 26px;
+  gap: 38px;
 }
 .group {
   display: flex;
@@ -122,9 +121,10 @@
   gap: 10px;
 }
 
-/* ── identity panel ── */
+/* ── identity panel — one block, centred like a title page ── */
 .identity {
-  justify-content: space-between;
+  justify-content: center;
+  gap: 34px;
 }
 .intro {
   display: flex;
@@ -161,7 +161,7 @@
   font-size: 17px;
   line-height: 2;
   color: var(--ink);
-  max-width: 460px;
+  max-width: 620px;
 }
 .contact {
   list-style: none;
@@ -228,16 +228,16 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 10px;
 }
 .bullets li {
   position: relative;
   padding-left: 18px;
   font-family: 'Architects Daughter', cursive;
   font-size: 14.5px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--ink);
-  max-width: 480px;
+  max-width: 680px;
 }
 .bullets li::before {
   content: '–';
@@ -279,9 +279,9 @@
 .listItem {
   font-family: 'Architects Daughter', cursive;
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--ink);
-  max-width: 540px;
+  max-width: 640px;
 }
 .listItem strong {
   font-family: 'Caveat', cursive;
