@@ -23,10 +23,6 @@
     inset 0 10px 30px rgba(20,16,8,0.08),
     inset 0 -10px 30px rgba(20,16,8,0.08),
     0 8px 28px rgba(20,16,8,0.35);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 }
 
@@ -53,92 +49,53 @@
   overflow-y: hidden;
   cursor: grab;
   scrollbar-width: none;
-  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
-  mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 72px), transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 44px, #000 calc(100% - 72px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 128px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 128px), transparent 100%);
 }
 .scroll::-webkit-scrollbar { display: none; }
 .scroll:active { cursor: grabbing; }
 
-/* the continuous paper strip — faint ruled lines tie the panels together */
-.strip {
-  display: flex;
-  align-items: stretch;
+/* the résumé is one continuous column of text that flows page-to-page
+   like a book — CSS multi-column, laid on its side so the pages run
+   left→right and the reader scrolls sideways. */
+.flow {
   height: 100%;
-  width: max-content;
+  padding: 44px 92px 44px 60px;
+  column-width: 560px;
+  column-gap: 74px;
+  column-fill: auto;
+  column-rule: 1px dashed rgba(28,23,16,0.22);
+  /* faint ruled paper lines running the length of the sheet */
   background-image: repeating-linear-gradient(
     to bottom,
     transparent 0 33px,
-    rgba(58,95,138,0.05) 33px 34px
+    rgba(58,95,138,0.045) 33px 34px
   );
-  background-position: 0 92px;
-}
-/* trailing space so the last fold can scroll clear of the vertical title */
-.strip::after {
-  content: '';
-  flex: 0 0 96px;
+  background-position: 0 74px;
 }
 
-/* each concertina fold — wide enough that ~1.5 folds show at once,
-   capped so lines stay readable on big monitors */
-.panel {
-  position: relative;
-  flex-shrink: 0;
-  width: clamp(560px, calc((100vw - 160px) / 1.5), 1040px);
-  height: 100%;
-  padding: 56px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 30px;
-  scroll-snap-align: start;
+/* keep a block whole rather than splitting it across a page edge */
+.identityBlock,
+.entry,
+.edu,
+.skills,
+.skillRow,
+.listItem,
+.closing {
+  break-inside: avoid;
 }
-.panel + .panel {
-  border-left: 1.5px dashed rgba(28,23,16,0.2);
-}
-/* soft valley-fold shading on the seam */
-.panel + .panel::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 28px;
-  background: linear-gradient(to right, rgba(28,23,16,0.06), transparent);
-  pointer-events: none;
+.heading {
+  break-after: avoid;
 }
 
-/* body region — compact stack; the fold centres it vertically */
-.fill {
-  display: flex;
-  flex-direction: column;
-  gap: 38px;
-}
-.group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* ── identity panel — one block, centred like a title page ── */
-.identity {
-  justify-content: center;
-  gap: 34px;
-}
-.intro {
-  display: flex;
-  flex-direction: column;
-}
-.intro .role {
-  margin-top: 2px;
-}
-.intro .summary {
-  margin-top: 28px;
+/* ── identity — the opening block of the flow ── */
+.identityBlock {
+  margin-bottom: 26px;
 }
 .name {
   font-family: 'Caveat', cursive;
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: -1px;
@@ -158,16 +115,17 @@
 }
 .summary {
   font-family: 'Architects Daughter', cursive;
-  font-size: 17px;
-  line-height: 2;
+  font-size: 15.5px;
+  line-height: 1.85;
   color: var(--ink);
-  max-width: 620px;
+  margin-top: 16px;
 }
 .contact {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
+  margin-top: 16px;
 }
 .contact li {
   font-family: 'Architects Daughter', cursive;
@@ -176,68 +134,66 @@
   letter-spacing: 0.03em;
 }
 
-/* ── section heading (pinned at fold top) ── */
+/* ── section heading ── */
 .heading {
   font-family: 'Caveat', cursive;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0.01em;
+  margin: 24px 0 12px;
 }
-.subheading {
-  font-family: 'Caveat', cursive;
-  font-size: 23px;
-  font-weight: 700;
-  color: var(--ink);
+.identityBlock + .heading {
+  margin-top: 0;
 }
 
-/* ── job entry — meta column + bullets column ── */
-.job {
-  display: flex;
-  flex-direction: row;
-  gap: 34px;
-  align-items: flex-start;
+/* ── one entry (experience / project / leadership) ── */
+.entry {
+  margin-bottom: 17px;
 }
-.jobMeta {
-  flex: 0 0 236px;
+.entryHead {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
 }
-.jobRole {
+.entryTitle {
   font-family: 'Caveat', cursive;
   font-size: 21px;
   font-weight: 700;
   color: var(--ink);
-  line-height: 1.15;
-  margin-bottom: 5px;
+  line-height: 1.2;
 }
-.jobCompany {
-  font-family: 'Architects Daughter', cursive;
-  font-size: 13px;
+.entryOrg {
   color: var(--ink-mid);
-  line-height: 1.55;
 }
-.jobPeriod {
+.entryPeriod {
   font-family: 'Architects Daughter', cursive;
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--ink-faint);
-  margin-top: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.entryPlace {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 12px;
+  color: var(--ink-faint);
+  margin-top: 1px;
 }
 .bullets {
-  flex: 1;
   list-style: none;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 .bullets li {
   position: relative;
-  padding-left: 18px;
+  padding-left: 17px;
   font-family: 'Architects Daughter', cursive;
   font-size: 14.5px;
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--ink);
-  max-width: 680px;
 }
 .bullets li::before {
   content: '–';
@@ -246,54 +202,43 @@
   color: var(--ink-faint);
 }
 
-/* ── skills — label + values per row, like the résumé ── */
+/* ── skills — label + values per row ── */
 .skills {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 11px;
 }
 .skillRow {
   display: flex;
   flex-direction: row;
-  gap: 18px;
+  gap: 16px;
   align-items: baseline;
 }
 .skillLabel {
-  flex: 0 0 96px;
+  flex: 0 0 92px;
   font-family: 'Caveat', cursive;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
   color: var(--ink-mid);
 }
 .skillItems {
   font-family: 'Architects Daughter', cursive;
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--ink);
 }
 
-/* ── generic stacked list (projects, awards) ── */
+/* ── certificates / generic list ── */
 .list {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 12px;
 }
 .listItem {
   font-family: 'Architects Daughter', cursive;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.65;
   color: var(--ink);
-  max-width: 640px;
-}
-.listItem strong {
-  font-family: 'Caveat', cursive;
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--ink);
-  margin-right: 6px;
-}
-.tech {
-  color: var(--ink-faint);
 }
 
 /* ── education ── */
@@ -301,6 +246,7 @@
   display: flex;
   flex-direction: column;
   gap: 3px;
+  margin-bottom: 12px;
 }
 .eduSchool {
   font-family: 'Caveat', cursive;
@@ -320,12 +266,14 @@
 }
 
 /* ── closing ── */
+.closing {
+  margin-top: 22px;
+}
 .closeLine {
   font-family: 'Architects Daughter', cursive;
   font-size: 15px;
   line-height: 1.8;
   color: var(--ink);
-  max-width: 380px;
 }
 .closeMail {
   font-family: 'Caveat', cursive;
@@ -333,6 +281,13 @@
   font-weight: 700;
   color: var(--pencil-blue);
   margin-top: 4px;
+}
+.signoff {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  margin-top: 2px;
 }
 
 /* ── drag hint ── */

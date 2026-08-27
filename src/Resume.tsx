@@ -172,7 +172,7 @@ const RESUME = {
     },
   ] as Education[],
   certificates: [
-    'DeepLearning.AI — Deep Learning Specialization: Neural Networks & Deep Learning, Improving Deep Neural Networks, Structuring ML Projects, Convolutional Neural Networks, Sequence Models (2022–2023).',
+    'DeepLearning.AI — Deep Learning Specialization: 5 courses incl. Convolutional Neural Networks and Sequence Models (2022–2023).',
     'Broadway — HTML, CSS, JavaScript (2016).',
   ],
 };
@@ -194,16 +194,18 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className={styles.heading}>{children}</h2>;
 }
 
-/* one experience / project / leadership entry — meta column + bullets */
+/* one experience / project / leadership entry, flowing top-to-bottom */
 function EntryBlock({ entry }: { entry: Entry }) {
   return (
-    <article className={styles.job}>
-      <div className={styles.jobMeta}>
-        <p className={styles.jobRole}>{entry.title}</p>
-        {entry.org && <p className={styles.jobCompany}>{entry.org}</p>}
-        {entry.place && <p className={styles.jobCompany}>{entry.place}</p>}
-        <p className={styles.jobPeriod}>{entry.period}</p>
+    <article className={styles.entry}>
+      <div className={styles.entryHead}>
+        <p className={styles.entryTitle}>
+          {entry.title}
+          {entry.org && <span className={styles.entryOrg}> — {entry.org}</span>}
+        </p>
+        <span className={styles.entryPeriod}>{entry.period}</span>
       </div>
+      {entry.place && <p className={styles.entryPlace}>{entry.place}</p>}
       <ul className={styles.bullets}>
         {entry.bullets.map((b, i) => <li key={i}>{b}</li>)}
       </ul>
@@ -245,7 +247,7 @@ export function Resume() {
     const handler = (e: KeyboardEvent) => {
       const el = railRef.current;
       if (!el) return;
-      const step = el.querySelector('section')?.clientWidth ?? el.clientWidth * 0.62;
+      const step = el.clientWidth * 0.5;
       if (e.key === 'ArrowRight') el.scrollBy({ left: step, behavior: 'smooth' });
       if (e.key === 'ArrowLeft') el.scrollBy({ left: -step, behavior: 'smooth' });
     };
@@ -284,113 +286,61 @@ export function Resume() {
           onMouseDown={onMouseDown}
           onWheel={onWheel}
         >
-          <div className={styles.strip}>
+          <div className={styles.flow}>
 
-            {/* ── 1. identity ── */}
-            <section className={`${styles.panel} ${styles.identity}`}>
-              <div className={styles.intro}>
-                <h1 className={styles.name}>{RESUME.name}</h1>
-                <Squiggle width={320} />
-                <p className={styles.role}>{RESUME.role}</p>
-                <p className={styles.summary}>{RESUME.summary}</p>
-              </div>
+            <header className={styles.identityBlock}>
+              <h1 className={styles.name}>{RESUME.name}</h1>
+              <Squiggle width={240} />
+              <p className={styles.role}>{RESUME.role}</p>
+              <p className={styles.summary}>{RESUME.summary}</p>
               <ul className={styles.contact}>
                 {RESUME.contact.map((c) => <li key={c}>{c}</li>)}
               </ul>
-            </section>
+            </header>
 
-            {/* ── 2. experience I ── */}
-            <section className={styles.panel}>
-              <Heading>where i&rsquo;ve worked</Heading>
-              <div className={styles.fill}>
-                {experience.slice(0, 2).map((e) => (
-                  <EntryBlock key={e.title + e.period} entry={e} />
-                ))}
-              </div>
-            </section>
+            <Heading>where i&rsquo;ve worked</Heading>
+            {experience.map((e) => <EntryBlock key={e.title + e.period} entry={e} />)}
 
-            {/* ── 3. experience II ── */}
-            <section className={styles.panel}>
-              <Heading>before that</Heading>
-              <div className={styles.fill}>
-                {experience.slice(2).map((e) => (
-                  <EntryBlock key={e.title + e.period} entry={e} />
-                ))}
-              </div>
-            </section>
+            <Heading>things i&rsquo;ve built</Heading>
+            {projects.map((e) => <EntryBlock key={e.title + e.period} entry={e} />)}
 
-            {/* ── 4. projects I ── */}
-            <section className={styles.panel}>
-              <Heading>things i&rsquo;ve built</Heading>
-              <div className={styles.fill}>
-                {projects.slice(0, 2).map((e) => (
-                  <EntryBlock key={e.title + e.period} entry={e} />
-                ))}
-              </div>
-            </section>
+            <Heading>leadership</Heading>
+            {leadership.map((e) => <EntryBlock key={e.title + e.period} entry={e} />)}
 
-            {/* ── 5. projects II ── */}
-            <section className={styles.panel}>
-              <Heading>&hellip; and more</Heading>
-              <div className={styles.fill}>
-                {projects.slice(2).map((e) => (
-                  <EntryBlock key={e.title + e.period} entry={e} />
-                ))}
-              </div>
-            </section>
-
-            {/* ── 6. leadership ── */}
-            <section className={styles.panel}>
-              <Heading>leadership</Heading>
-              <div className={styles.fill}>
-                {leadership.map((e) => (
-                  <EntryBlock key={e.title + e.period} entry={e} />
-                ))}
-              </div>
-            </section>
-
-            {/* ── 7. toolkit + schooling ── */}
-            <section className={styles.panel}>
-              <Heading>toolkit</Heading>
-              <div className={styles.fill}>
-                <div className={styles.skills}>
-                  {RESUME.skills.map((s) => (
-                    <div key={s.label} className={styles.skillRow}>
-                      <span className={styles.skillLabel}>{s.label}</span>
-                      <span className={styles.skillItems}>{s.items}</span>
-                    </div>
-                  ))}
+            <Heading>toolkit</Heading>
+            <div className={styles.skills}>
+              {RESUME.skills.map((s) => (
+                <div key={s.label} className={styles.skillRow}>
+                  <span className={styles.skillLabel}>{s.label}</span>
+                  <span className={styles.skillItems}>{s.items}</span>
                 </div>
-                <div className={styles.group}>
-                  <h3 className={styles.subheading}>schooling</h3>
-                  {RESUME.education.map((ed) => (
-                    <div key={ed.school} className={styles.edu}>
-                      <p className={styles.eduSchool}>{ed.school}</p>
-                      <p className={styles.eduDegree}>{ed.degree}</p>
-                      <p className={styles.eduMeta}>
-                        {ed.place} · {ed.period}{ed.note ? ` · ${ed.note}` : ''}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </section>
+              ))}
+            </div>
 
-            {/* ── 8. certificates + closing ── */}
-            <section className={styles.panel}>
-              <Heading>certificates</Heading>
-              <div className={styles.fill}>
-                <div className={styles.list}>
-                  {RESUME.certificates.map((c, i) => (
-                    <p key={i} className={styles.listItem}>{c}</p>
-                  ))}
-                </div>
-                <div>
-                  <p className={styles.closeLine}>like what you see? the fastest way to reach me &mdash;</p>
-                  <p className={styles.closeMail}>{RESUME.contact[2]}</p>
-                </div>
+            <Heading>schooling</Heading>
+            {RESUME.education.map((ed) => (
+              <div key={ed.school} className={styles.edu}>
+                <p className={styles.eduSchool}>{ed.school}</p>
+                <p className={styles.eduDegree}>{ed.degree}</p>
+                <p className={styles.eduMeta}>
+                  {ed.place} · {ed.period}{ed.note ? ` · ${ed.note}` : ''}
+                </p>
               </div>
-            </section>
+            ))}
+
+            <Heading>certificates</Heading>
+            <div className={styles.list}>
+              {RESUME.certificates.map((c, i) => (
+                <p key={i} className={styles.listItem}>{c}</p>
+              ))}
+            </div>
+
+            <div className={styles.closing}>
+              <p className={styles.closeLine}>like what you see? the fastest way to reach me &mdash;</p>
+              <p className={styles.closeMail}>{RESUME.contact[2]}</p>
+              <Squiggle width={180} />
+              <p className={styles.signoff}>&mdash; Pawan</p>
+            </div>
 
           </div>
         </div>
