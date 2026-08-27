@@ -30,7 +30,7 @@ const RESUME = {
   summary:
     'Software engineer with four years across systems, web, and internal tooling at HPE and early-stage startups. Now focused on real-time graphics, games, and AR as an MS Visualization student and teaching assistant at Texas A&M.',
   contact: {
-    github: 'https://github.com/pawansubedi',
+    github: 'https://github.com/pwnsbd',
     linkedin: 'https://www.linkedin.com/in/pawan-subedi-6620b4128/',
     email: 'justpawan7@gmail.com',
     phone: '605-728-1310',
