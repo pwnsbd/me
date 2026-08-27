@@ -199,13 +199,13 @@
   align-items: flex-start;
 }
 .jobMeta {
-  flex: 0 0 190px;
+  flex: 0 0 236px;
   display: flex;
   flex-direction: column;
 }
 .jobRole {
   font-family: 'Caveat', cursive;
-  font-size: 23px;
+  font-size: 21px;
   font-weight: 700;
   color: var(--ink);
   line-height: 1.15;
@@ -246,18 +246,20 @@
   color: var(--ink-faint);
 }
 
-/* ── skills grid (two columns on the wide fold) ── */
+/* ── skills — label + values per row, like the résumé ── */
 .skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 .skillRow {
   display: flex;
-  flex-direction: column;
-  gap: 4px;
+  flex-direction: row;
+  gap: 18px;
+  align-items: baseline;
 }
 .skillLabel {
+  flex: 0 0 96px;
   font-family: 'Caveat', cursive;
   font-size: 20px;
   font-weight: 700;

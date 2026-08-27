@@ -3,96 +3,178 @@ import { SvgFilters } from './SvgFilters';
 import { BindingNav } from './BindingNav';
 import styles from './Resume.module.css';
 
-interface Job {
-  role: string;
-  company: string;
+interface Entry {
+  title: string;
+  org?: string;
+  place?: string;
   period: string;
-  place: string;
   bullets: string[];
 }
 
 interface Education {
   school: string;
   degree: string;
+  place: string;
   period: string;
   note?: string;
 }
 
 /* ──────────────────────────────────────────────────────────────
-   DUMMY RÉSUMÉ CONTENT
-   Swap these values for the real thing later — the layout below
-   just reads from this object, so nothing else needs to change.
+   RÉSUMÉ CONTENT
+   Everything the page shows lives here — the layout below just
+   reads from this object. Update these values to update the page.
    ────────────────────────────────────────────────────────────── */
 const RESUME = {
   name: 'Pawan Subedi',
-  role: 'Product-minded Frontend Engineer',
+  role: 'Software Engineer · MS Visualization @ Texas A&M',
   summary:
-    'Frontend engineer who likes turning fuzzy product ideas into interfaces that feel effortless. Five-ish years across startups and freelance work, mostly React and TypeScript, with a soft spot for animation, design systems, and shipping small things often.',
+    'Software engineer with four years across systems, web, and internal tooling at HPE and early-stage startups. Now focused on real-time graphics, games, and AR as an MS Visualization student and teaching assistant at Texas A&M.',
   contact: [
+    'github.com/pawansubedi',
+    'linkedin.com/in/pawansubedi',
     'justpawan7@gmail.com',
-    'Kathmandu, Nepal',
-    'pawansubedi.com',
-    'github.com/pwnsbd',
+    '605-728-1310',
   ],
   experience: [
     {
-      role: 'Senior Frontend Engineer',
-      company: 'Loremify',
-      period: '2023 — now',
-      place: 'Remote',
+      title: 'Teaching Assistant',
+      org: 'Texas A&M',
+      place: 'College Station, TX',
+      period: 'Aug 2025 — Present',
       bullets: [
-        'Led the rebuild of the editor surface in React + TypeScript, cutting time-to-interactive by ~40%.',
-        'Built the shared component library and visual-regression suite now used by three product teams.',
-        'Mentored two junior engineers through their first production features.',
+        'Teach weekly lab sections for ~60 students, guiding them through Unreal Engine and building gameplay features with Blueprint scripting.',
+        'Give hands-on technical support — debugging Blueprint graphs, actors/components, and gameplay events — to help teams reach milestone deliverables and playable prototypes.',
+        'Grade assignments and projects against a rubric, with feedback on gameplay functionality, Blueprint logic quality, and completion.',
       ],
     },
     {
-      role: 'Frontend Engineer',
-      company: 'Ipsum Labs',
-      period: '2021 — 2023',
-      place: 'Kathmandu',
+      title: 'System Software Engineer',
+      org: 'Hewlett Packard Enterprise',
+      place: 'San Jose, CA',
+      period: 'Jul 2022 — Apr 2025',
       bullets: [
-        'Built the customer dashboard from scratch — charts, filters, saved views.',
-        'Migrated a legacy jQuery app to React one route at a time, with no downtime.',
-        'Owned the design-to-code handoff alongside the product design team.',
+        'Built robust shared functions used by 15 teammates that cut typical script length by 40%, in Python and Pytest.',
+        'Worked on a system-simulation project — defining and identifying defects and pushing the limits of the system through varied test cases and automation.',
       ],
     },
     {
-      role: 'Freelance Web Developer',
-      company: 'Self-employed',
-      period: '2019 — 2021',
-      place: 'Remote',
+      title: 'Software Engineer',
+      org: 'Hewlett Packard Enterprise',
+      place: 'San Jose, CA',
+      period: 'May 2021 — May 2022',
       bullets: [
-        'Delivered 15+ marketing sites and small web apps for clients across four countries.',
-        'Handled the whole pipeline: scoping, design, build, deploy, and the invoice emails.',
+        'Created a user-friendly GUI that helped 300+ employees run specific CLI-based tasks efficiently.',
+        'Enhanced the web app UI with Python, Django, MongoDB, Celery, and Elasticsearch to hit project objectives.',
       ],
     },
-  ] as Job[],
+    {
+      title: 'Software Engineer',
+      org: 'Neighbor Marketing',
+      place: 'Remote · New York',
+      period: 'Apr 2020 — Jun 2020',
+      bullets: [
+        'Led a team of 4 to design and build a property-reviews website reaching 250,000+ people, using React and JavaScript.',
+        'Integrated the Google Maps API for location and autocomplete, Firebase auth for profiles, and Mailchimp for automated emails and newsletters.',
+      ],
+    },
+  ] as Entry[],
   projects: [
-    { name: 'Scribbly', blurb: 'a minimal markdown notes app that gets out of your way', tech: 'React · IndexedDB' },
-    { name: 'Bloom', blurb: 'a gentle habit tracker built around quiet celebration', tech: 'React · PWA' },
-    { name: 'Peek', blurb: 'rich link previews on hover, anywhere on the web', tech: 'Chrome API · Node' },
-  ],
+    {
+      title: 'AR / Game Projects',
+      org: 'Coursework',
+      period: 'Aug 2025 — Present',
+      bullets: [
+        'Built 3 interactive prototypes — including ScavengAR Hunt (a staged AR scavenger hunt) and Animal vs. Human — each a complete gameplay loop from setup to interaction to completion.',
+        'Implemented core game systems: state-based progression, spawning and triggers, UI prompts, and interaction logic, in Unity with an AR stack (Vuforia / AR Foundation).',
+        'Iterated through playtests to fix tracking and interaction bugs, sharpen UX clarity, and improve reliability and performance across builds.',
+      ],
+    },
+    {
+      title: 'GAN — Generative Adversarial Networks',
+      org: 'Self-study',
+      period: 'Oct 2023 — Aug 2025',
+      bullets: [
+        'Studied and reproduced GAN papers — CycleGAN, StyleGAN, DCGAN, SRGAN.',
+        'Attempted to match a Canny edge detector’s output using GAN models, with OpenCV and PyTorch.',
+      ],
+    },
+    {
+      title: 'Health Memo',
+      org: 'Sanford Health Hack — Runner-up · Team Lead',
+      period: 'Sep 2022 — Oct 2022',
+      bullets: [
+        'Pitched a business plan and prototyped an iOS app for logging users’ health.',
+        'Took 2nd place and the People’s Choice award out of 20 teams — $9,000 in total prizes.',
+        'Prototyped in Swift and Parse with Google’s Text-to-Speech and Speech-to-Text.',
+      ],
+    },
+    {
+      title: 'Twitter Clone',
+      org: 'CodePath · iOS',
+      period: 'Oct 2020',
+      bullets: [
+        'Built a Twitter clone in Swift and Storyboard where users stay logged in without losing credentials or tweets.',
+        'Added retweeting, favoriting, and infinite scrolling.',
+      ],
+    },
+    {
+      title: 'Pill Buddy',
+      org: 'Sanford Health Hack — Runner-up · Team Lead',
+      period: 'Sep 2019 — Oct 2019',
+      bullets: [
+        'Built a mobile app and delivered the product pitch — 2nd place out of 12 teams, $7,000 prize pool.',
+        'Designed an interface for 5,000+ elderly Sanford patients to check drug interactions and spot less-obvious ones before an overdose.',
+      ],
+    },
+  ] as Entry[],
+  leadership: [
+    {
+      title: 'Conference Volunteer',
+      org: 'ACM SIGGRAPH 2024',
+      place: 'Denver, CO',
+      period: 'Jul — Aug 2024',
+      bullets: [
+        'Supported conference operations across high-traffic areas — registration, sessions, exhibits — keeping the day-to-day flow smooth.',
+        'Communicated with attendees and organizers to resolve issues quickly and keep activities on schedule.',
+        'Picked up current directions in graphics, games, and interactive tech through on-site programming and demos.',
+      ],
+    },
+    {
+      title: 'Communication Director',
+      org: 'Augustana Student Association',
+      place: 'Sioux Falls, SD',
+      period: 'Aug 2019 — May 2020',
+      bullets: [
+        'Led a team of 6 responsible for transparency and visibility across 100+ student clubs.',
+        'Improved the student experience and maintained the Association website.',
+        'Organized the 2019 Senate election with 30+ student participants.',
+      ],
+    },
+  ] as Entry[],
   skills: [
-    { label: 'Languages', items: 'TypeScript, JavaScript, HTML, CSS, a little Rust' },
-    { label: 'Frameworks', items: 'React, Next.js, Vite, Node, Express' },
-    { label: 'Craft', items: 'Design systems, SVG & motion, accessibility, testing' },
-    { label: 'Tools', items: 'Git, Figma, Playwright, Docker, Vercel' },
+    { label: 'Computer', items: 'C++, Python, Java, React, HTML, JavaScript, Swift' },
+    { label: 'Tools', items: 'Unreal, Unity, Houdini, PyTorch, Keras, Django, Git, Docker, OpenCV' },
+    { label: 'Interests', items: 'Deep learning, reinforcement learning, drawing & painting, football, photography, videography' },
   ],
   education: [
     {
-      school: 'Tribhuvan University',
-      degree: 'BSc Computer Science & IT',
-      period: '2015 — 2019',
-      note: 'graduated with distinction',
+      school: 'Texas A&M University',
+      degree: 'MS, Visualization',
+      place: 'College Station, TX',
+      period: 'Expected May 2027',
+    },
+    {
+      school: 'Augustana University',
+      degree: 'BA, Computer Science & Data Science · Minor in Math',
+      place: 'Sioux Falls, SD',
+      period: 'May 2022',
+      note: 'GPA 3.52 / 4.00',
     },
   ] as Education[],
-  awards: [
-    'Hack Kathmandu 2022 — 1st place, developer-tools track',
-    'Open source — 400+ stars across small React utilities',
-    'Speaker, "SVG is a design tool" — Frontend Kathmandu meetup, 2023',
+  certificates: [
+    'DeepLearning.AI — Deep Learning Specialization: Neural Networks & Deep Learning, Improving Deep Neural Networks, Structuring ML Projects, Convolutional Neural Networks, Sequence Models (2022–2023).',
+    'Broadway — HTML, CSS, JavaScript (2016).',
   ],
-  languages: 'Nepali (native) · English (fluent) · Hindi (conversational)',
 };
 
 /* rough hand-drawn underline */
@@ -112,17 +194,18 @@ function Heading({ children }: { children: React.ReactNode }) {
   return <h2 className={styles.heading}>{children}</h2>;
 }
 
-function JobBlock({ job }: { job: Job }) {
+/* one experience / project / leadership entry — meta column + bullets */
+function EntryBlock({ entry }: { entry: Entry }) {
   return (
     <article className={styles.job}>
       <div className={styles.jobMeta}>
-        <p className={styles.jobRole}>{job.role}</p>
-        <p className={styles.jobCompany}>{job.company}</p>
-        <p className={styles.jobCompany}>{job.place}</p>
-        <p className={styles.jobPeriod}>{job.period}</p>
+        <p className={styles.jobRole}>{entry.title}</p>
+        {entry.org && <p className={styles.jobCompany}>{entry.org}</p>}
+        {entry.place && <p className={styles.jobCompany}>{entry.place}</p>}
+        <p className={styles.jobPeriod}>{entry.period}</p>
       </div>
       <ul className={styles.bullets}>
-        {job.bullets.map((b, i) => <li key={i}>{b}</li>)}
+        {entry.bullets.map((b, i) => <li key={i}>{b}</li>)}
       </ul>
     </article>
   );
@@ -170,7 +253,7 @@ export function Resume() {
     return () => window.removeEventListener('keydown', handler);
   }, []);
 
-  const exp = RESUME.experience;
+  const { experience, projects, leadership } = RESUME;
 
   return (
     <div className={styles.desk}>
@@ -220,29 +303,53 @@ export function Resume() {
             <section className={styles.panel}>
               <Heading>where i&rsquo;ve worked</Heading>
               <div className={styles.fill}>
-                {exp.slice(0, 2).map((j) => <JobBlock key={j.company} job={j} />)}
+                {experience.slice(0, 2).map((e) => (
+                  <EntryBlock key={e.title + e.period} entry={e} />
+                ))}
               </div>
             </section>
 
-            {/* ── 3. experience II + projects ── */}
+            {/* ── 3. experience II ── */}
             <section className={styles.panel}>
               <Heading>before that</Heading>
               <div className={styles.fill}>
-                {exp.slice(2).map((j) => <JobBlock key={j.company} job={j} />)}
-                <div className={styles.group}>
-                  <h3 className={styles.subheading}>selected projects</h3>
-                  <div className={styles.list}>
-                    {RESUME.projects.map((p) => (
-                      <p key={p.name} className={styles.listItem}>
-                        <strong>{p.name}</strong>{p.blurb} — <span className={styles.tech}>{p.tech}</span>
-                      </p>
-                    ))}
-                  </div>
-                </div>
+                {experience.slice(2).map((e) => (
+                  <EntryBlock key={e.title + e.period} entry={e} />
+                ))}
               </div>
             </section>
 
-            {/* ── 4. toolkit + schooling ── */}
+            {/* ── 4. projects I ── */}
+            <section className={styles.panel}>
+              <Heading>things i&rsquo;ve built</Heading>
+              <div className={styles.fill}>
+                {projects.slice(0, 2).map((e) => (
+                  <EntryBlock key={e.title + e.period} entry={e} />
+                ))}
+              </div>
+            </section>
+
+            {/* ── 5. projects II ── */}
+            <section className={styles.panel}>
+              <Heading>&hellip; and more</Heading>
+              <div className={styles.fill}>
+                {projects.slice(2).map((e) => (
+                  <EntryBlock key={e.title + e.period} entry={e} />
+                ))}
+              </div>
+            </section>
+
+            {/* ── 6. leadership ── */}
+            <section className={styles.panel}>
+              <Heading>leadership</Heading>
+              <div className={styles.fill}>
+                {leadership.map((e) => (
+                  <EntryBlock key={e.title + e.period} entry={e} />
+                ))}
+              </div>
+            </section>
+
+            {/* ── 7. toolkit + schooling ── */}
             <section className={styles.panel}>
               <Heading>toolkit</Heading>
               <div className={styles.fill}>
@@ -260,29 +367,27 @@ export function Resume() {
                     <div key={ed.school} className={styles.edu}>
                       <p className={styles.eduSchool}>{ed.school}</p>
                       <p className={styles.eduDegree}>{ed.degree}</p>
-                      <p className={styles.eduMeta}>{ed.period}{ed.note ? ` · ${ed.note}` : ''}</p>
+                      <p className={styles.eduMeta}>
+                        {ed.place} · {ed.period}{ed.note ? ` · ${ed.note}` : ''}
+                      </p>
                     </div>
                   ))}
                 </div>
               </div>
             </section>
 
-            {/* ── 5. also / closing ── */}
+            {/* ── 8. certificates + closing ── */}
             <section className={styles.panel}>
-              <Heading>also</Heading>
+              <Heading>certificates</Heading>
               <div className={styles.fill}>
                 <div className={styles.list}>
-                  {RESUME.awards.map((a, i) => (
-                    <p key={i} className={styles.listItem}>{a}</p>
+                  {RESUME.certificates.map((c, i) => (
+                    <p key={i} className={styles.listItem}>{c}</p>
                   ))}
                 </div>
-                <div className={styles.group}>
-                  <h3 className={styles.subheading}>languages</h3>
-                  <span className={styles.skillItems}>{RESUME.languages}</span>
-                </div>
                 <div>
-                  <p className={styles.closeLine}>like what you see? the fastest way to reach me —</p>
-                  <p className={styles.closeMail}>{RESUME.contact[0]}</p>
+                  <p className={styles.closeLine}>like what you see? the fastest way to reach me &mdash;</p>
+                  <p className={styles.closeMail}>{RESUME.contact[2]}</p>
                 </div>
               </div>
             </section>
