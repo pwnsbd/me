@@ -23,7 +23,7 @@
 .tag {
   font-family: 'Architects Daughter', cursive;
   font-size: 13px;
-  color: var(--paper);
-  opacity: 0.7;
+  color: var(--ink-faint);
+  opacity: 0.8;
   letter-spacing: 0.04em;
 }

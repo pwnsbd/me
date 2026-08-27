@@ -53,11 +53,11 @@ export function Projects() {
       <div className={styles.titleWrap}>
         <svg viewBox="0 0 260 48" className={styles.titleSvg} overflow="visible">
           <text x="2" y="38" fontFamily="'Caveat', cursive" fontSize="42" fontWeight="700"
-            fill="var(--paper)" filter="url(#pencil)" opacity="0.92">
+            fill="var(--ink)" filter="url(#pencil)" opacity="0.85">
             i do create
           </text>
           <path d="M 2 44 Q 90 49 200 46"
-            stroke="var(--paper)" strokeWidth="1.6" fill="none" opacity="0.45"
+            stroke="var(--ink)" strokeWidth="1.6" fill="none" opacity="0.3"
             filter="url(#pencil)" strokeLinecap="round" />
         </svg>
       </div>
