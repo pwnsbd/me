@@ -20,6 +20,10 @@
   display: block;
 }
 
+.small .svg {
+  width: 250px;
+}
+
 .tag {
   font-family: 'Architects Daughter', cursive;
   font-size: 13px;

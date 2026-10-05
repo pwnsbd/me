@@ -5,13 +5,17 @@ interface Props {
   url: string;
   tag: string;
   rotate: number;
+  /** faint word stamped diagonally across the window */
+  stamp?: string;
+  /** compact card for the smaller projects */
+  small?: boolean;
   /** SVG content rendered inside the window (coords: x 12–308, y 38–210) */
   children: React.ReactNode;
 }
 
-export function ProjectWindow({ title, url, tag, rotate, children }: Props) {
+export function ProjectWindow({ title, url, tag, rotate, stamp, small, children }: Props) {
   return (
-    <div className={styles.card} style={{ '--rot': `${rotate}deg` } as React.CSSProperties}>
+    <div className={`${styles.card} ${small ? styles.small : ''}`} style={{ '--rot': `${rotate}deg` } as React.CSSProperties}>
       <svg viewBox="0 0 320 220" className={styles.svg} overflow="visible">
         <g filter="url(#pencil)">
           {/* window body */}
@@ -45,8 +49,8 @@ export function ProjectWindow({ title, url, tag, rotate, children }: Props) {
           {/* content */}
           {children}
 
-          {/* coming soon stamp */}
-          <text
+          {/* status stamp */}
+          {stamp && <text
             x="160" y="128"
             fontFamily="'Caveat', cursive"
             fontSize="28"
@@ -57,7 +61,7 @@ export function ProjectWindow({ title, url, tag, rotate, children }: Props) {
             dominantBaseline="middle"
             transform="rotate(-28, 160, 128)"
             letterSpacing="2"
-          >coming soon</text>
+          >{stamp}</text>}
         </g>
       </svg>
 

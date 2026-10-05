@@ -6,11 +6,14 @@ export interface ProjectInfo {
   url: string;
   tag: string;
   description: string;
+  /** empty string hides the section */
   problem: string;
   vision: string;
   stack: string;
   status: string;
   github?: string;
+  /** live site, when there is one */
+  link?: string;
 }
 
 interface Props {
@@ -49,7 +52,9 @@ export function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNex
             <span className={styles.tag}>{project.tag}</span>
           </div>
           <div className={styles.headerRight}>
-            <span className={styles.url}>{project.url}</span>
+            {project.link
+              ? <a className={styles.url} href={project.link} target="_blank" rel="noopener noreferrer">{project.url} ↗</a>
+              : <span className={styles.url}>{project.url}</span>}
             {project.github && (
               <a
                 href={project.github}
@@ -92,15 +97,19 @@ export function ProjectModal({ project, onClose, onPrev, onNext, hasPrev, hasNex
             <p className={styles.text}>{project.description}</p>
           </section>
 
-          <section className={styles.section}>
-            <span className={styles.sectionLabel}>the problem</span>
-            <p className={styles.text}>{project.problem}</p>
-          </section>
+          {project.problem && (
+            <section className={styles.section}>
+              <span className={styles.sectionLabel}>the problem</span>
+              <p className={styles.text}>{project.problem}</p>
+            </section>
+          )}
 
-          <section className={styles.section}>
-            <span className={styles.sectionLabel}>the vision</span>
-            <p className={styles.text}>{project.vision}</p>
-          </section>
+          {project.vision && (
+            <section className={styles.section}>
+              <span className={styles.sectionLabel}>the vision</span>
+              <p className={styles.text}>{project.vision}</p>
+            </section>
+          )}
 
           {/* meta */}
           <div className={styles.meta}>
