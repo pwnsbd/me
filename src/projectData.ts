@@ -13,7 +13,7 @@ export interface Project extends ProjectInfo {
 
 export const GROUPS: { id: ProjectGroup; label: string; note: string }[] = [
   { id: 'now',   label: 'on the desk',   note: 'what i’m building right now' },
-  { id: 'proud', label: 'finished',      note: 'shipped & proud of' },
+  { id: 'proud', label: 'finished',      note: 'done for now — until i go back to them' },
   { id: 'more',  label: 'odds & ends',   note: 'smaller builds & class work' },
 ];
 
@@ -21,7 +21,7 @@ export const GROUPS: { id: ProjectGroup; label: string; note: string }[] = [
 export const PROJECTS: Project[] = [
   /* ── on the desk ── */
   {
-    group: 'now', sketch: 'journal', stamp: 'in progress',
+    group: 'now', sketch: 'journal', stamp: 'almost done',
     title: 'Words',
     url: '~/words · desktop',
     tag: 'journal · desktop app',
@@ -32,10 +32,10 @@ export const PROJECTS: Project[] = [
     vision:
       'A mirror, not a coach. Peaceful rather than engaging: no streaks, no badges, no cloud. Words should feel like someone who has read your journal for years and gently says “you wrote something like this in March.” Everything — writing, models, memory — stays on your machine.',
     stack: 'Electron · React · TypeScript · llama.cpp · Llama 3.1 8B · Qwen3 embeddings',
-    status: 'Preparing v0.2.0 release',
+    status: 'Almost done — v0.2.0 release next',
   },
   {
-    group: 'now', sketch: 'lens', stamp: 'in progress',
+    group: 'now', sketch: 'lens', stamp: 'long build',
     title: 'RayForge',
     url: 'unreal 5.8 · VR',
     tag: 'optics · VR sim',
@@ -46,7 +46,7 @@ export const PROJECTS: Project[] = [
     vision:
       'Each optical law written exactly once, validated against analytic or catalog values before it appears in a scene, and everything you see in the headset driven by that one core. A lab bench you can step into, where the picture is never lying to you.',
     stack: 'Unreal Engine 5.8 · C++ · HLSL · Python editor scripting',
-    status: 'Active — 86/86 headless optics tests green',
+    status: 'Long build — a few months to go (86/86 optics tests green)',
   },
   {
     group: 'now', sketch: 'graph', stamp: 'in progress',
@@ -60,10 +60,10 @@ export const PROJECTS: Project[] = [
     vision:
       'An agent that knows the machine it lives on — exact controls, a current map of every folder, and search by meaning — without any file content leaving the computer. Retrieval, not training.',
     stack: 'Python · MCP · Windows UI Automation · SQLite · sentence embeddings',
-    status: 'Active development',
+    status: 'Work in progress',
   },
   {
-    group: 'now', sketch: 'gallery', stamp: 'in progress',
+    group: 'now', sketch: 'gallery', stamp: 'half done',
     title: 'MemoryRoom',
     url: 'quest · VR',
     tag: 'photos · VR app',
@@ -74,13 +74,13 @@ export const PROJECTS: Project[] = [
     vision:
       'A place you visit, not a feed you scroll — a calm room of memories you arrange yourself, with themes and spaces that suit the photos inside them.',
     stack: 'Unreal Engine · C++ · Android / Meta Quest',
-    status: 'Active development',
+    status: 'Half done',
     github: 'https://github.com/pwnsbd/MemoryRoom',
   },
 
   /* ── finished ── */
   {
-    group: 'proud', sketch: 'palette', stamp: 'shipped',
+    group: 'proud', sketch: 'palette', stamp: 'finished',
     title: 'Rasa',
     url: 'github · releases',
     tag: 'image style · desktop app',
@@ -91,12 +91,12 @@ export const PROJECTS: Project[] = [
     vision:
       'A personal library of Essences you collect the way you collect reference images, applied in one click and fully offline. Released as a Windows installer that a non-developer can set up and use end-to-end: extract, apply, export.',
     stack: 'Electron · React · Vite · TypeScript · FastAPI · PyTorch (CUDA)',
-    status: 'Released \u2014 v0.2.0 Windows installer',
+    status: 'Finished for now — v0.2.0 Windows installer',
     github: 'https://github.com/pwnsbd/rasa',
     link: 'https://github.com/pwnsbd/rasa/releases',
   },
   {
-    group: 'proud', sketch: 'book', stamp: 'shipped',
+    group: 'proud', sketch: 'book', stamp: 'finished',
     title: 'Spotlight',
     url: 'spotlight.pwnsbd.me',
     tag: 'reading · chrome ext + web',
@@ -107,11 +107,11 @@ export const PROJECTS: Project[] = [
     vision:
       'Your highlights resurfacing gently, one at a time, like opening a well-read book to a random page. Fully usable with no account and no server — the extension’s local storage is the source of truth.',
     stack: 'Chrome Extensions API · vanilla JS · Supabase (optional sync) · Vercel',
-    status: 'Live',
+    status: 'Finished for now — live',
     link: 'https://spotlight.pwnsbd.me',
   },
   {
-    group: 'proud', sketch: 'dictionary', stamp: 'shipped',
+    group: 'proud', sketch: 'dictionary', stamp: 'finished',
     title: 'Lingo',
     url: 'vs code · extension',
     tag: 'dev tools · VS Code ext',
@@ -122,11 +122,11 @@ export const PROJECTS: Project[] = [
     vision:
       'Precise pointing in plain words. Lingo adapts its vocabulary to the project — website, backend, game, CLI — and never scans or edits code; it only remembers what the agent tells it.',
     stack: 'TypeScript · VS Code Extension API · MCP',
-    status: 'v0.2.0',
+    status: 'Finished for now — v0.2.0',
     github: 'https://github.com/All3glory/lingo',
   },
   {
-    group: 'proud', sketch: 'orbits', stamp: 'shipped',
+    group: 'proud', sketch: 'orbits', stamp: 'finished',
     title: 'Nakshatra',
     url: 'nakshatra · web',
     tag: '3D · web app',
@@ -137,11 +137,11 @@ export const PROJECTS: Project[] = [
     vision:
       'An observatory, not a horoscope: accurate astronomy rendered as a scene you move through, from now back to the moment you arrived.',
     stack: 'React · TypeScript · Three.js · GSAP · Zustand · astronomy-engine',
-    status: 'Complete',
+    status: 'Finished for now',
     github: 'https://github.com/pwnsbd/Nakshatra',
   },
   {
-    group: 'proud', sketch: 'frog', stamp: 'shipped',
+    group: 'proud', sketch: 'frog', stamp: 'finished',
     title: 'FroggerAR',
     url: 'android · AR',
     tag: 'AR · game',
@@ -152,7 +152,7 @@ export const PROJECTS: Project[] = [
     vision:
       'A complete AR loop — build the course in your own space, then play it — with readable feedback for lives, progress, win and lose.',
     stack: 'Unity 6 · C# · AR Foundation · ARCore · Vuforia · URP',
-    status: 'Complete — APK + gameplay video',
+    status: 'Finished — APK + gameplay video',
     github: 'https://github.com/pwnsbd/FroggerAR',
   },
 
