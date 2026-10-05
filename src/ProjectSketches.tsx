@@ -4,7 +4,7 @@
 export type SketchKind =
   | 'journal' | 'palette' | 'lens' | 'graph' | 'gallery'
   | 'book' | 'dictionary' | 'orbits' | 'frog'
-  | 'chart' | 'towers' | 'swatches' | 'mic' | 'histogram';
+  | 'towers' | 'swatches';
 
 const INK = 'var(--ink)';
 const HAND = "'Architects Daughter', cursive";
@@ -204,18 +204,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
     </>
   ),
 
-  /* Odyssey — a line chart */
-  chart: () => (
-    <>
-      <path d="M 30 190 L 30 60 M 30 190 L 296 190" stroke={INK} strokeWidth="1" opacity="0.4" />
-      <path d="M 34 170 C 60 160 70 150 90 156 C 120 166 130 120 160 116 C 190 112 200 140 220 130 C 250 116 260 80 292 76"
-        stroke={INK} strokeWidth="1.6" fill="none" opacity="0.6" />
-      <path d="M 160 64 L 160 190" stroke={INK} strokeWidth="0.8" strokeDasharray="3 3" opacity="0.4" />
-      <Label x={164} y={72} size={8}>Q3 filing</Label>
-      <Label x={36} y={58} size={8}>13F · AAPL</Label>
-    </>
-  ),
-
   /* Tower War — towers linked by lines */
   towers: () => {
     const t: [number, number][] = [[60, 160], [150, 110], [240, 150], [210, 70], [90, 80]];
@@ -246,37 +234,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
       <path d="M 40 176 L 280 176" stroke={INK} strokeWidth="5" opacity="0.15" strokeLinecap="round" />
       <circle cx="200" cy="176" r="6" fill="var(--paper)" stroke={INK} strokeWidth="1" opacity="0.8" />
       <Label x={280} y={200} size={8} anchor="end">streak 7</Label>
-    </>
-  ),
-
-  /* VoiceSentis — mic and recognised text */
-  mic: () => (
-    <>
-      <path d="M 70 70 C 70 60 90 60 90 70 L 90 110 C 90 120 70 120 70 110 Z"
-        fill="var(--paper-dark)" stroke={INK} strokeWidth="1.1" opacity="0.7" />
-      <path d="M 60 104 C 60 130 100 130 100 104 M 80 128 L 80 146 M 68 146 L 92 146"
-        stroke={INK} strokeWidth="1.1" fill="none" opacity="0.6" />
-      {[0, 1, 2].map(i => (
-        <path key={i} d={`M ${108 + i * 10} 80 C ${114 + i * 10} 90 ${114 + i * 10} 100 ${108 + i * 10} 110`}
-          stroke={INK} strokeWidth="1" fill="none" opacity={0.45 - i * 0.12} />
-      ))}
-      <Box x={160} y={74} w={136} h={40} opacity={0.4} />
-      <Label x={168} y={98} size={9}>“open the door”</Label>
-      <Label x={160} y={140} size={8}>whisper · on-device</Label>
-    </>
-  ),
-
-  /* ImageViewer — image with histogram */
-  histogram: () => (
-    <>
-      <Box x={24} y={60} w={140} h={110} fill="var(--paper-dark)" opacity={0.5} />
-      <path d="M 30 160 L 70 110 L 100 140 L 124 118 L 158 160 Z" fill={INK} opacity="0.13" />
-      <circle cx="136" cy="84" r="10" fill={INK} opacity="0.1" />
-      {[4, 8, 14, 22, 30, 38, 44, 40, 32, 26, 30, 36, 28, 18, 10, 6].map((h, i) => (
-        <path key={i} d={`M ${182 + i * 7} 170 L ${182 + i * 7} ${170 - h * 2}`} stroke={INK}
-          strokeWidth="5" opacity="0.3" />
-      ))}
-      <path d="M 178 170 L 296 170" stroke={INK} strokeWidth="1" opacity="0.4" />
     </>
   ),
 

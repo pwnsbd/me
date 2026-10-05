@@ -35,21 +35,6 @@ export const PROJECTS: Project[] = [
     status: 'Preparing v0.2.0 release',
   },
   {
-    group: 'now', sketch: 'palette', stamp: 'in progress',
-    title: 'Rasa',
-    url: '~/rasa · desktop',
-    tag: 'image style · desktop app',
-    description:
-      'Pull the visual style out of a reference image — its light, palette, texture and mood, saved as an “Essence” — and reapply it to your own photos. Everything runs locally on your GPU through a Python sidecar; nothing leaves 127.0.0.1.',
-    problem:
-      'Getting a photo to “feel like that one” means either hours of manual grading or uploading your pictures to a cloud filter that flattens everything into the same look. Presets copy numbers, not mood.',
-    vision:
-      'A personal library of Essences you collect the way you collect reference images, applied in one click and fully offline. The current push is a Windows release that a non-developer can install and use end-to-end: extract, apply, export.',
-    stack: 'Electron · React · Vite · TypeScript · FastAPI · PyTorch (CUDA)',
-    status: 'Windows release candidate',
-    github: 'https://github.com/pwnsbd/rasa',
-  },
-  {
     group: 'now', sketch: 'lens', stamp: 'in progress',
     title: 'RayForge',
     url: 'unreal 5.8 · VR',
@@ -94,6 +79,22 @@ export const PROJECTS: Project[] = [
   },
 
   /* ── finished ── */
+  {
+    group: 'proud', sketch: 'palette', stamp: 'shipped',
+    title: 'Rasa',
+    url: 'github · releases',
+    tag: 'image style · desktop app',
+    description:
+      'Pull the visual style out of a reference image — its light, palette, texture and mood, saved as an “Essence” — and reapply it to your own photos. Everything runs locally on your GPU through a Python sidecar; nothing leaves 127.0.0.1.',
+    problem:
+      'Getting a photo to “feel like that one” means either hours of manual grading or uploading your pictures to a cloud filter that flattens everything into the same look. Presets copy numbers, not mood.',
+    vision:
+      'A personal library of Essences you collect the way you collect reference images, applied in one click and fully offline. Released as a Windows installer that a non-developer can set up and use end-to-end: extract, apply, export.',
+    stack: 'Electron · React · Vite · TypeScript · FastAPI · PyTorch (CUDA)',
+    status: 'Released \u2014 v0.2.0 Windows installer',
+    github: 'https://github.com/pwnsbd/rasa',
+    link: 'https://github.com/pwnsbd/rasa/releases',
+  },
   {
     group: 'proud', sketch: 'book', stamp: 'shipped',
     title: 'Spotlight',
@@ -157,20 +158,6 @@ export const PROJECTS: Project[] = [
 
   /* ── odds & ends ── */
   {
-    group: 'more', sketch: 'chart', stamp: 'done',
-    title: 'Odyssey',
-    url: 'localhost:3000',
-    tag: 'finance · dashboard',
-    description:
-      'An interactive dashboard over SEC Form 13F institutional holdings from 2011 to 2025. Click any holding to see its price history centred on the filing quarter, fetched and cached locally.',
-    problem:
-      '13F filings are raw XML spread across hundreds of quarters.',
-    vision:
-      'Fourteen years of institutional moves you can browse in seconds.',
-    stack: 'React · Express · Python (stdlib) data pipeline',
-    status: 'Complete',
-  },
-  {
     group: 'more', sketch: 'towers', stamp: 'done',
     title: 'Tower War',
     url: 'android · AR',
@@ -195,30 +182,5 @@ export const PROJECTS: Project[] = [
     stack: 'React · Vite · localStorage',
     status: 'Complete',
     github: 'https://github.com/pwnsbd/ColorPicker',
-  },
-  {
-    group: 'more', sketch: 'mic', stamp: 'done',
-    title: 'VoiceSentis',
-    url: 'unity · package',
-    tag: 'speech · Unity prefab',
-    description:
-      'A drop-in Unity prefab for offline speech-to-text. Record, run a Whisper ONNX model on-device with Unity Sentis, and get the text back through an event — no API costs.',
-    problem: '',
-    vision: '',
-    stack: 'Unity · C# · Unity Sentis · Whisper ONNX',
-    status: 'Complete',
-  },
-  {
-    group: 'more', sketch: 'histogram', stamp: 'done',
-    title: 'ImageViewer',
-    url: 'qt · desktop',
-    tag: 'imaging · desktop app',
-    description:
-      'A native image viewer with a live histogram and basic image-processing tools, written in C++ with Qt.',
-    problem: '',
-    vision: '',
-    stack: 'C++ · Qt · CMake',
-    status: 'Complete',
-    github: 'https://github.com/pwnsbd/ImageViewer',
   },
 ];
