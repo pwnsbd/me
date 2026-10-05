@@ -59,6 +59,35 @@
   width: max-content;
 }
 
+/* ── shelf label between project groups ── */
+.shelf {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 140px;
+  padding-left: 18px;
+  border-left: 1.5px dashed rgba(28, 23, 16, 0.25);
+  align-self: stretch;
+  justify-content: center;
+}
+
+.shelfLabel {
+  font-family: 'Caveat', cursive;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 0.7;
+  line-height: 1;
+}
+
+.shelfNote {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 12px;
+  color: var(--ink-faint);
+  line-height: 1.4;
+}
+
 /* ── page title — right edge, vertical, always above scrolling windows ── */
 .pageTitle {
   position: absolute;
