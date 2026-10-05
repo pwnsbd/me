@@ -14,7 +14,7 @@ export interface Project extends ProjectInfo {
 export const GROUPS: { id: ProjectGroup; label: string; note: string }[] = [
   { id: 'now',   label: 'on the desk',   note: 'what i’m building right now' },
   { id: 'proud', label: 'finished',      note: 'shipped & proud of' },
-  { id: 'more',  label: 'odds & ends',   note: 'experiments, class work, prototypes' },
+  { id: 'more',  label: 'odds & ends',   note: 'smaller builds & class work' },
 ];
 
 /* `github` is only set for public repos — private ones stay unlinked */
@@ -203,48 +203,6 @@ export const PROJECTS: Project[] = [
 
   /* ── odds & ends ── */
   {
-    group: 'more', sketch: 'graph', stamp: 'prototype',
-    title: 'Nidhi',
-    url: '.nidhi/ · CLI',
-    tag: 'AI memory · CLI',
-    description:
-      'A local project-memory layer for a coding agent. Before each prompt it assembles a compact context bundle; after each turn it records what happened and proposes verified updates to a concept graph of the project. Stored in SQLite inside the project folder.',
-    problem:
-      'Coding agents rely on huge prompt files, repeated file reads and fragile chat history to remember a project.',
-    vision:
-      'The right context for the task at hand, every time — with verification before anything becomes durable memory.',
-    stack: 'TypeScript · Node · SQLite · Vitest',
-    status: 'Prototype',
-  },
-  {
-    group: 'more', sketch: 'depth', stamp: 'prototype',
-    title: 'Drishti',
-    url: 'quest 3 · tool',
-    tag: '2D → 3D · VR tool',
-    description:
-      'Converts a 2D photo or short video into side-by-side stereo for Meta Quest 3, using AI depth estimation and edge repair. Comfort-first presets were tuned by testing in the headset.',
-    problem:
-      'Almost everything we’ve filmed is flat, and naive 3D conversion is uncomfortable to watch.',
-    vision:
-      'Any memory, viewable in comfortable 3D on a headset.',
-    stack: 'Python · Depth Anything V2 · OpenCV',
-    status: 'Working V1 slice',
-  },
-  {
-    group: 'more', sketch: 'camera', stamp: 'prototype',
-    title: 'LiveStudio',
-    url: 'raspberry pi · device',
-    tag: 'hardware · virtual studio',
-    description:
-      'A Raspberry Pi box that receives your webcam feed, separates you from the background and composites you into a virtual HDRI-lit studio, then captures a polished still.',
-    problem:
-      'Polished portraits need a studio, lights and a workflow most people don’t have.',
-    vision:
-      'A small dedicated creative device, not another webcam filter.',
-    stack: 'Raspberry Pi · Python · segmentation models',
-    status: 'Early prototype',
-  },
-  {
     group: 'more', sketch: 'chart', stamp: 'done',
     title: 'Odyssey',
     url: 'localhost:3000',
@@ -308,18 +266,5 @@ export const PROJECTS: Project[] = [
     stack: 'C++ · Qt · CMake',
     status: 'Complete',
     github: 'https://github.com/pwnsbd/ImageViewer',
-  },
-  {
-    group: 'more', sketch: 'blocks', stamp: 'wip',
-    title: 'ParaBox Remake',
-    url: 'c++ · from scratch',
-    tag: 'puzzle · game engine',
-    description:
-      'A small 2D puzzle game built from scratch with no game engine — ship a playable version first, then refactor the working code into reusable engine-like modules.',
-    problem: '',
-    vision: '',
-    stack: 'C++ · OpenGL · CMake',
-    status: 'Engine skeleton done',
-    github: 'https://github.com/pwnsbd/Remake-ParaBox',
   },
 ];

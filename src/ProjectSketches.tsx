@@ -4,7 +4,7 @@
 export type SketchKind =
   | 'journal' | 'palette' | 'lens' | 'graph' | 'gallery'
   | 'depth' | 'book' | 'audio' | 'mail' | 'dictionary' | 'orbits' | 'frog'
-  | 'camera' | 'chart' | 'towers' | 'swatches' | 'mic' | 'histogram' | 'blocks';
+  | 'chart' | 'towers' | 'swatches' | 'mic' | 'histogram';
 
 const INK = 'var(--ink)';
 const HAND = "'Architects Daughter', cursive";
@@ -259,22 +259,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
     </>
   ),
 
-  /* LiveStudio — camera feed → person cut-out in a studio */
-  camera: () => (
-    <>
-      <Box x={24} y={70} w={100} h={74} fill="var(--paper-dark)" opacity={0.5} />
-      <circle cx="74" cy="96" r="12" fill="none" stroke={INK} strokeWidth="1" opacity="0.5" />
-      <path d="M 52 140 C 56 116 92 116 96 140" stroke={INK} strokeWidth="1" fill="none" opacity="0.5" />
-      <path d="M 138 107 L 176 107" stroke={INK} strokeWidth="1.3" opacity="0.5" />
-      <path d="M 170 101 L 177 107 L 170 113" stroke={INK} strokeWidth="1.3" fill="none" opacity="0.5" />
-      <Box x={190} y={60} w={106} h={94} fill={INK} opacity={0.12} />
-      <path d="M 196 130 C 230 116 260 120 290 128" stroke={INK} strokeWidth="1" opacity="0.3" fill="none" />
-      <circle cx="243" cy="94" r="12" fill="var(--paper)" stroke={INK} strokeWidth="1" opacity="0.7" />
-      <path d="M 221 150 C 225 124 261 124 265 150" fill="var(--paper)" stroke={INK} strokeWidth="1" opacity="0.7" />
-      <Label x={243} y={176} size={8} anchor="middle">pi · studio</Label>
-    </>
-  ),
-
   /* Odyssey — a line chart */
   chart: () => (
     <>
@@ -351,19 +335,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
     </>
   ),
 
-  /* ParaBox — boxes inside boxes on a grid */
-  blocks: () => (
-    <>
-      {Array.from({ length: 7 }, (_, c) => Array.from({ length: 4 }, (_, r) => (
-        <rect key={`${c}-${r}`} x={58 + c * 30} y={64 + r * 30} width="30" height="30" fill="none"
-          stroke={INK} strokeWidth="0.4" opacity="0.25" />
-      )))}
-      <rect x="148" y="94" width="60" height="60" fill="var(--paper-dark)" stroke={INK} strokeWidth="1.2" opacity="0.7" />
-      <rect x="160" y="106" width="16" height="16" fill={INK} opacity="0.25" />
-      <rect x="182" y="128" width="16" height="16" fill="none" stroke={INK} strokeWidth="0.8" opacity="0.5" />
-      <circle cx="103" cy="139" r="9" fill="#81C784" opacity="0.6" stroke={INK} strokeWidth="0.8" />
-    </>
-  ),
 };
 
 export function ProjectSketch({ kind }: { kind: SketchKind }) {
