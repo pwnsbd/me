@@ -95,22 +95,6 @@ export const PROJECTS: Project[] = [
 
   /* ── finished ── */
   {
-    group: 'proud', sketch: 'depth', stamp: 'shipped',
-    title: 'DepthFrame',
-    url: 'depthframe.pwnsbd.me',
-    tag: 'AI · web app',
-    description:
-      'Turn a single photo into an interactive 3D parallax viewer, entirely in the browser. Two AI models estimate per-pixel depth and surface normals on-device, then the photo shifts, lights and focuses as you move your mouse. Exports to video. Nothing is uploaded.',
-    problem:
-      'Depth effects usually need special cameras, a server running the model, or a mobile app that wants your photos. The interesting AI is there in open models — it just isn’t reachable from a plain web page.',
-    vision:
-      'Real depth models running in WebAssembly and WebGL, so any photo becomes something you can look around in, with click-to-focus depth of field and lighting that tapers with distance — wrapped in a vintage hi-fi rack UI.',
-    stack: 'TypeScript · Vite · WebGL · ONNX Runtime Web · Depth Anything V2 · Metric3D',
-    status: 'Live',
-    github: 'https://github.com/pwnsbd/depthframe',
-    link: 'https://depthframe.pwnsbd.me',
-  },
-  {
     group: 'proud', sketch: 'book', stamp: 'shipped',
     title: 'Spotlight',
     url: 'spotlight.pwnsbd.me',
@@ -124,36 +108,6 @@ export const PROJECTS: Project[] = [
     stack: 'Chrome Extensions API · vanilla JS · Supabase (optional sync) · Vercel',
     status: 'Live',
     link: 'https://spotlight.pwnsbd.me',
-  },
-  {
-    group: 'proud', sketch: 'audio', stamp: 'shipped',
-    title: 'PDF to Audiobook',
-    url: '~/audiobook · desktop',
-    tag: 'TTS · desktop app',
-    description:
-      'Drop in a PDF, pick a voice, get a narrated audiobook — all on your own machine. Three local voice engines (Quick, Storyteller and Custom Voice), OCR for scanned pages, and a library that plays books back in-app. Ships as a real Windows installer.',
-    problem:
-      'Good text-to-speech lives behind API keys and per-character pricing, and uploading whole books to a cloud service is slow, expensive and not always yours to do.',
-    vision:
-      'Local-first, GPU-first narration that anyone can install with a double-click: no Node, no Python, no keys — models download themselves on first launch.',
-    stack: 'Electron · React · Tailwind · FastAPI · Kokoro · Chatterbox · Qwen3-TTS · SQLite',
-    status: 'Complete — Windows installer',
-    github: 'https://github.com/pwnsbd/pdf-to-audiobook',
-  },
-  {
-    group: 'proud', sketch: 'mail', stamp: 'shipped',
-    title: 'LocalMail',
-    url: '~/localmail · windows',
-    tag: 'privacy · email assistant',
-    description:
-      'A privacy-first email assistant that turns Gmail messages into tasks, reminders and summaries using a local LLM. A Chrome extension captures the message you’re reading; a Windows app triages it with llama.cpp. No email content ever leaves the machine.',
-    problem:
-      'Inboxes flatten three different things — things to do, things to remember, things to just know — into one list. The AI tools that could sort them want to read all of your mail on their servers.',
-    vision:
-      'Hands-off triage: confident tasks are created automatically, uncertain ones wait for a quick review, and the app picks and configures a model that fits your hardware on its own.',
-    stack: 'Chrome extension · .NET (Windows) · llama.cpp',
-    status: 'Working — source release',
-    github: 'https://github.com/pwnsbd/LocalMail',
   },
   {
     group: 'proud', sketch: 'dictionary', stamp: 'shipped',

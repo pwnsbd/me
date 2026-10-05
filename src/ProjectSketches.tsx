@@ -3,7 +3,7 @@
 
 export type SketchKind =
   | 'journal' | 'palette' | 'lens' | 'graph' | 'gallery'
-  | 'depth' | 'book' | 'audio' | 'mail' | 'dictionary' | 'orbits' | 'frog'
+  | 'book' | 'dictionary' | 'orbits' | 'frog'
   | 'chart' | 'towers' | 'swatches' | 'mic' | 'histogram';
 
 const INK = 'var(--ink)';
@@ -140,22 +140,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
     </>
   ),
 
-  /* DepthFrame / Drishti — photo + depth layers */
-  depth: () => (
-    <>
-      {[0, 1, 2].map(i => (
-        <g key={i} transform={`translate(${i * 26}, ${-i * 12})`}>
-          <Box x={60} y={92} w={150} h={96} fill="var(--paper-dark)" opacity={0.35 + i * 0.2} />
-        </g>
-      ))}
-      <path d="M 120 168 L 160 120 L 190 150 L 210 132 L 232 160" stroke={INK} strokeWidth="1.2" fill="none" opacity="0.5" />
-      <circle cx="230" cy="96" r="9" fill={INK} opacity="0.12" />
-      <path d="M 40 196 C 100 194 200 196 280 195" stroke={INK} strokeWidth="1" opacity="0.2" />
-      <circle cx="150" cy="196" r="4" fill={INK} opacity="0.5" />
-      <Label x={22} y={58} size={8}>near ← depth → far</Label>
-    </>
-  ),
-
   /* Spotlight — an open book with one highlighted line */
   book: () => (
     <>
@@ -168,45 +152,6 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
       <path d="M 174 128 C 210 126 250 129 276 127" stroke="#E8C547" strokeWidth="9" opacity="0.45" strokeLinecap="round" />
       <TextLines x={176} y={128} count={1} widths={[100]} />
       <TextLines x={176} y={154} count={3} gap={13} widths={[90, 104, 50]} />
-    </>
-  ),
-
-  /* PDF to Audiobook — document turning into a waveform */
-  audio: () => (
-    <>
-      <Box x={26} y={66} w={64} h={84} fill="var(--paper-dark)" opacity={0.6} />
-      <Label x={36} y={80} size={9} opacity={0.7}>PDF</Label>
-      <TextLines x={34} y={96} count={5} gap={10} widths={[46, 40, 46, 30, 42]} />
-      <path d="M 100 108 C 112 106 122 109 132 108" stroke={INK} strokeWidth="1.3" fill="none" opacity="0.6" />
-      <path d="M 126 102 L 133 108 L 126 114" stroke={INK} strokeWidth="1.3" fill="none" opacity="0.6" />
-      {[14, 26, 18, 34, 22, 40, 16, 30, 36, 12, 26, 38, 20, 32, 10, 28].map((h, i) => (
-        <path key={i} d={`M ${146 + i * 9.5} ${108 + h / 2} L ${146 + i * 9.5} ${108 - h / 2}`}
-          stroke={INK} strokeWidth="3.5" strokeLinecap="round" opacity={i < 9 ? 0.65 : 0.22} />
-      ))}
-      {['quick', 'storyteller', 'custom'].map((v, i) => (
-        <g key={v}>
-          <path d={`M ${40 + i * 88} 172 L ${110 + i * 88} 172.6 L ${110 + i * 88} 190 L ${40 + i * 88} 189.4 Z`}
-            fill={i === 1 ? INK : 'none'} fillOpacity="0.1" stroke={INK} strokeWidth="0.8" opacity="0.5" />
-          <Label x={75 + i * 88} y={185} size={8} anchor="middle">{v}</Label>
-        </g>
-      ))}
-    </>
-  ),
-
-  /* LocalMail — envelope sorted into do / remember / know */
-  mail: () => (
-    <>
-      <Box x={30} y={84} w={90} h={60} fill="var(--paper-dark)" opacity={0.6} />
-      <path d="M 30 84 L 75 118 L 120 84" stroke={INK} strokeWidth="1" fill="none" opacity="0.5" />
-      {[['do', 66], ['remember', 114], ['know', 162]].map(([t, y], i) => (
-        <g key={i}>
-          <path d={`M 130 114 C 150 114 160 ${y} 180 ${y}`} stroke={INK} strokeWidth="1" fill="none" opacity="0.4" />
-          <Box x={186} y={(y as number) - 14} w={108} h={26} opacity={0.45} />
-          <path d={`M 194 ${(y as number) - 4} L 198 ${y} L 205 ${(y as number) - 8}`} stroke={INK} strokeWidth="1.2" fill="none" opacity="0.5" />
-          <Label x={212} y={(y as number) + 2} size={9}>{t}</Label>
-        </g>
-      ))}
-      <Label x={30} y={170} size={8}>runs on-device</Label>
     </>
   ),
 
