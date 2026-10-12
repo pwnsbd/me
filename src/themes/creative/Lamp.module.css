@@ -1,0 +1,19 @@
+/* Gentle pulsing glow for the creative lamp's sketched rays. */
+.rays {
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: glow 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { opacity: 0.55; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rays {
+    animation: none;
+    opacity: 0.85;
+  }
+}

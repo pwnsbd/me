@@ -1,4 +1,5 @@
 import styles from './NameScribble.module.css';
+import { PROFILE } from '../../../content';
 
 export function NameScribble() {
   return (
@@ -6,11 +7,11 @@ export function NameScribble() {
       <svg viewBox="0 0 520 160" className={styles.svg} overflow="visible" style={{ overflow: 'visible' }}>
         {/* ghost pass */}
         <text x="3" y="58" filter="url(#pencil)" className={styles.ghost}>
-          Pawan
+          {PROFILE.firstName}
         </text>
         {/* main name */}
         <text x="1" y="56" filter="url(#pencil)" className={styles.name}>
-          Pawan
+          {PROFILE.firstName}
         </text>
         {/* underline */}
         <path
@@ -24,10 +25,10 @@ export function NameScribble() {
         />
         {/* summary — wrapped across two lines */}
         <text x="2" y="100" filter="url(#pencil)" className={styles.summary}>
-          just an enthusiastic builder who wants to
+          {PROFILE.bioLines[0]}
         </text>
         <text x="2" y="124" filter="url(#pencil)" className={styles.summary}>
-          create products that are fun to use.
+          {PROFILE.bioLines[1]}
         </text>
 
         {/* ── WALKING STICKMAN — walks the underline, sits at the end ── */}

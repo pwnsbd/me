@@ -1,5 +1,5 @@
-import { SvgFilters } from './SvgFilters';
-import { BindingNav } from './BindingNav';
+import { SvgFilters } from '../SvgFilters';
+import { BindingNav } from '../components/BindingNav';
 import styles from './Writing.module.css';
 
 export function Writing() {

@@ -1,15 +1,4 @@
-import type { ProjectInfo } from './ProjectModal';
-import type { SketchKind } from './ProjectSketches';
-
-/* which shelf a project sits on */
-export type ProjectGroup = 'now' | 'proud' | 'more';
-
-export interface Project extends ProjectInfo {
-  group: ProjectGroup;
-  sketch: SketchKind;
-  /** faint word stamped across the window */
-  stamp: string;
-}
+import type { Project, ProjectGroup } from './types';
 
 export const GROUPS: { id: ProjectGroup; label: string; note: string }[] = [
   { id: 'now',   label: 'on the desk',   note: 'what i’m building right now' },
@@ -21,7 +10,7 @@ export const GROUPS: { id: ProjectGroup; label: string; note: string }[] = [
 export const PROJECTS: Project[] = [
   /* ── on the desk ── */
   {
-    group: 'now', sketch: 'journal', stamp: 'almost done',
+    group: 'now', sketch: 'journal', stamp: 'released',
     title: 'Words',
     url: '~/words · desktop',
     tag: 'journal · desktop app',
@@ -31,8 +20,9 @@ export const PROJECTS: Project[] = [
       'Journals are write-only. You pour months of thinking into them and never look back, so the same worries and ideas loop without you noticing. AI writing tools that could help are generic assistants bolted onto a doc — and they ship your most private writing to a server.',
     vision:
       'A mirror, not a coach. Peaceful rather than engaging: no streaks, no badges, no cloud. Words should feel like someone who has read your journal for years and gently says “you wrote something like this in March.” Everything — writing, models, memory — stays on your machine.',
-    stack: 'Electron · React · TypeScript · llama.cpp · Llama 3.1 8B · Qwen3 embeddings',
-    status: 'Almost done — v0.2.0 release next',
+    stack: 'Electron · React · TypeScript · llama.cpp · Qwen3.5-9B · Qwen3 embeddings',
+    status: 'Released — v0.2.0 Windows installer',
+    github: 'https://github.com/pwnsbd/Words',
   },
   {
     group: 'now', sketch: 'lens', stamp: 'long build',
@@ -45,8 +35,8 @@ export const PROJECTS: Project[] = [
       'Optics is taught with flat diagrams and idealised thin lenses, and most 3D “optics” demos fake the physics in shaders. Once the visuals and the maths drift apart you can’t trust what you see.',
     vision:
       'Each optical law written exactly once, validated against analytic or catalog values before it appears in a scene, and everything you see in the headset driven by that one core. A lab bench you can step into, where the picture is never lying to you.',
-    stack: 'Unreal Engine 5.8 · C++ · HLSL · Python editor scripting',
-    status: 'Long build — a few months to go (86/86 optics tests green)',
+    stack: 'Unreal Engine 5.8 · C++ · Blueprints · HLSL · OpenXR · Meta Quest 3',
+    status: 'In development — master’s thesis direction; 100+ automated optics checks, see-through update cut from 7.6 ms to 2.9 ms on Quest 3',
   },
   {
     group: 'now', sketch: 'graph', stamp: 'in progress',
@@ -54,7 +44,7 @@ export const PROJECTS: Project[] = [
     url: '~/buddhi · MCP',
     tag: 'AI tooling · local server',
     description:
-      'A persistent layer between Claude and my computer, as one local MCP server. It reads and drives apps through the OS accessibility tree instead of screenshots, keeps a living index of the filesystem, and adds meaning-based search over it with local embeddings.',
+      'A persistent layer between an AI agent and my computer, as one local MCP server. It reads and drives apps through the OS accessibility tree instead of screenshots, keeps a living index of the filesystem, and adds meaning-based search over it with local embeddings.',
     problem:
       'AI agents see a computer as pixels. They click by guessing coordinates on screenshots, re-walk the whole disk for every question, and can’t find “the drone footage from Nepal” unless you remember the folder name.',
     vision:
@@ -73,8 +63,8 @@ export const PROJECTS: Project[] = [
       'Our photo libraries hold thousands of memories that we only ever see as a scroll of thumbnails. Panoramas especially lose everything when they’re squashed onto a flat screen.',
     vision:
       'A place you visit, not a feed you scroll — a calm room of memories you arrange yourself, with themes and spaces that suit the photos inside them.',
-    stack: 'Unreal Engine · C++ · Android / Meta Quest',
-    status: 'Half done',
+    stack: 'Unreal Engine · Blueprints · C++ · Meta Quest · spatial audio',
+    status: 'Active development',
     github: 'https://github.com/pwnsbd/MemoryRoom',
   },
 
@@ -90,10 +80,11 @@ export const PROJECTS: Project[] = [
       'Getting a photo to “feel like that one” means either hours of manual grading or uploading your pictures to a cloud filter that flattens everything into the same look. Presets copy numbers, not mood.',
     vision:
       'A personal library of Essences you collect the way you collect reference images, applied in one click and fully offline. Released as a Windows installer that a non-developer can set up and use end-to-end: extract, apply, export.',
-    stack: 'Electron · React · Vite · TypeScript · FastAPI · PyTorch (CUDA)',
-    status: 'Finished for now — v0.2.0 Windows installer',
+    stack: 'Electron · React · TypeScript · FastAPI · PyTorch (CUDA) · SDXL · ControlNet',
+    status: 'Released — v0.2.0 Windows installer; processing cut from 64 s to 15 s per pass',
     github: 'https://github.com/pwnsbd/rasa',
-    link: 'https://github.com/pwnsbd/rasa/releases',
+    link: 'https://pwnsbd.github.io/rasa',
+    linkLabel: 'Showcase',
   },
   {
     group: 'proud', sketch: 'book', stamp: 'finished',
@@ -107,8 +98,9 @@ export const PROJECTS: Project[] = [
     vision:
       'Your highlights resurfacing gently, one at a time, like opening a well-read book to a random page. Fully usable with no account and no server — the extension’s local storage is the source of truth.',
     stack: 'Chrome Extensions API · vanilla JS · Supabase (optional sync) · Vercel',
-    status: 'Finished for now — live',
+    status: 'Shipped MVP in ~15 days — live',
     link: 'https://spotlight.pwnsbd.me',
+    linkLabel: 'Website',
   },
   {
     group: 'proud', sketch: 'dictionary', stamp: 'finished',
@@ -116,14 +108,16 @@ export const PROJECTS: Project[] = [
     url: 'vs code · extension',
     tag: 'dev tools · VS Code ext',
     description:
-      'A shared dictionary between you and your coding agent. As Claude Code creates and renames things, it records each named piece of the project through an MCP server, and Lingo shows that record in a VS Code sidebar so you can ask for changes using the exact names.',
+      'A shared dictionary between you and your coding agent. As the AI agent creates and renames things, it records each named piece of the project through an MCP server, and Lingo shows that record in a VS Code sidebar so you can ask for changes using the exact names.',
     problem:
       'As a project grows you forget what everything is called, so you describe it vaguely — “that box on the left” — and the agent guesses. Both sides are guessing, and every miss costs a round trip.',
     vision:
       'Precise pointing in plain words. Lingo adapts its vocabulary to the project — website, backend, game, CLI — and never scans or edits code; it only remembers what the agent tells it.',
-    stack: 'TypeScript · VS Code Extension API · MCP',
-    status: 'Finished for now — v0.2.0',
+    stack: 'TypeScript · VS Code Extension API · Node.js · SQLite · MCP',
+    status: 'Released to the VS Code Marketplace — v0.2.0',
     github: 'https://github.com/All3glory/lingo',
+    link: 'https://marketplace.visualstudio.com/items?itemName=pwnsbd.lingo',
+    linkLabel: 'VS Code Marketplace',
   },
   {
     group: 'proud', sketch: 'orbits', stamp: 'finished',
@@ -154,6 +148,22 @@ export const PROJECTS: Project[] = [
     stack: 'Unity 6 · C# · AR Foundation · ARCore · Vuforia · URP',
     status: 'Finished — APK + gameplay video',
     github: 'https://github.com/pwnsbd/FroggerAR',
+  },
+  {
+    group: 'proud', sketch: 'sphere', stamp: 'shipped',
+    title: 'Dead’s Rights',
+    url: 'unreal · game',
+    tag: 'game · lead engineer',
+    description:
+      'A team-built Unreal Engine game set in a maze wrapped around a sphere, mixing unusual movement with player abilities and interactive challenges. Pitched the concept and led engineering for four engineers working alongside artists, building the core gameplay loop and player mechanics in C++.',
+    problem:
+      'Turning an ambitious game idea into a finished team project in one semester — four engineers and artists building interfaces, AI, abilities and supporting systems separately, all of which had to come together.',
+    vision:
+      'Ship a complete, playable game by protecting scope: playtested with ~40 students, resolved integration issues between independently built systems, and cut the planned abilities from five to four to land the 13-week timeline.',
+    stack: 'Unreal Engine · C++ · gameplay systems · team leadership',
+    status: 'Shipped — spring 2026 · ~36% of repository commits',
+    link: 'https://foxico.itch.io/deads-rights',
+    linkLabel: 'Play on itch.io',
   },
 
   /* ── odds & ends ── */

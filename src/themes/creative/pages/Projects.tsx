@@ -1,10 +1,10 @@
 import { Fragment, useRef, useState } from 'react';
-import { SvgFilters } from './SvgFilters';
-import { BindingNav } from './BindingNav';
-import { ProjectWindow } from './ProjectWindow';
-import { ProjectModal } from './ProjectModal';
-import { ProjectSketch } from './ProjectSketches';
-import { GROUPS, PROJECTS } from './projectData';
+import { SvgFilters } from '../SvgFilters';
+import { BindingNav } from '../components/BindingNav';
+import { ProjectWindow } from '../components/ProjectWindow';
+import { ProjectModal } from '../components/ProjectModal';
+import { ProjectSketch } from '../components/ProjectSketches';
+import { GROUPS, PROJECTS } from '../../../content';
 import styles from './Projects.module.css';
 
 /* gentle hand-placed tilt, cycled across cards */

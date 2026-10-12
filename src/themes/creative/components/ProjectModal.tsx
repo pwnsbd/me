@@ -1,20 +1,6 @@
 import { useEffect } from 'react';
 import styles from './ProjectModal.module.css';
-
-export interface ProjectInfo {
-  title: string;
-  url: string;
-  tag: string;
-  description: string;
-  /** empty string hides the section */
-  problem: string;
-  vision: string;
-  stack: string;
-  status: string;
-  github?: string;
-  /** live site, when there is one */
-  link?: string;
-}
+import type { ProjectInfo } from '../../../content';
 
 interface Props {
   project: ProjectInfo | null;

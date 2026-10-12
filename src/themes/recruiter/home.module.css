@@ -1,0 +1,56 @@
+.stage { position: relative; background: #ececea; padding: 150px 0 32px; height: 100vh; height: 100dvh; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; overflow-x: clip; }
+.ruler { display: flex; justify-content: center; align-items: center; gap: 10px; height: 24px; margin-bottom: 16px; }
+.tick { width: 2px; height: 12px; padding: 0; border: 0; background: #999; cursor: pointer; box-sizing: content-box; border-radius: 1px; }
+.tick:hover { background: #111; }
+.tickActive { width: 10px; height: 10px; background: transparent; border: 1px solid #0f766e; border-radius: 2px; }
+.strip { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 0 max(24px, calc(50vw - min(400px, 43vw))); scroll-padding: 0 max(24px, calc(50vw - min(400px, 43vw))); }
+.strip::-webkit-scrollbar { display: none; }
+.cell { flex: none; width: min(800px, 86vw); scroll-snap-align: center; display: flex; flex-direction: column; gap: 8px; }
+.label { font-size: 11px; color: #666; }
+.panel { position: relative; overflow: hidden; background: #fff; padding: 24px; box-sizing: border-box; height: clamp(300px, 50vh, 480px); display: flex; flex-direction: column; border-radius: 4px; }
+.headline { font-size: 42px; line-height: 1.12; letter-spacing: -0.02em; font-weight: 500; margin: 0; position: relative; z-index: 1; }
+.headline span { display: block; }
+.sub { color: #666; }
+.circle { position: absolute; right: 40px; top: 50%; transform: translateY(-50%); width: 260px; height: 260px; border-radius: 50%; background: #0f766e; z-index: 0; }
+.panel h2.headline { font-size: 28px; }
+.spacer { flex: 1; }
+.small { font-size: 12px; color: #666; position: relative; z-index: 1; }
+.rows { display: flex; flex-direction: column; overflow-y: auto; }
+.row { display: block; padding: 12px 0; border-top: 1px solid #eee; font-size: 15px; color: #111; text-decoration: none; }
+.row:first-child { border-top: 0; padding-top: 0; }
+.rowHead { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+.rowMeta { font-size: 12px; color: #666; text-align: right; flex: none; }
+.rowSub { font-size: 12px; color: #666; margin-top: 2px; }
+a.row:hover .rowTitle { color: #0f766e; }
+.foot { margin-top: auto; padding-top: 12px; font-size: 13px; }
+.contact { display: flex; flex-direction: column; margin-top: 24px; }
+.contact a { padding: 12px 0; border-top: 1px solid #eee; font-size: 15px; color: #111; text-decoration: none; }
+.contact a:hover { color: #0f766e; }
+
+.credit { position: absolute; left: 0; right: 0; bottom: 8px; margin: 0; text-align: center; font-size: 11px; color: #999; }
+.credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.credit a:hover { color: #666; }
+
+.flipPanel { perspective: 1600px; height: clamp(300px, 50vh, 480px); }
+.flipInner { display: grid; height: 100%; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.flipped { transform: rotateY(180deg); }
+.face { grid-area: 1 / 1; height: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.back { transform: rotateY(180deg); }
+.about { position: relative; z-index: 1; columns: 210px auto; column-gap: 28px; font-size: 14px; line-height: 1.55; color: #333; }
+.about p { margin: 0 0 10px; }
+@media (max-height: 720px) { .about { font-size: 13px; line-height: 1.45; } }
+@media (prefers-reduced-motion: reduce) { .flipInner { transition: none; } }
+.textBtn { font: inherit; font-size: 13px; color: #0f766e; background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; position: relative; z-index: 1; }
+
+@media (max-width: 600px) {
+  .flipPanel { height: auto; }
+  .face { height: auto; }
+  .about { columns: 1; }
+  .stage { padding: 150px 12px 32px; height: auto; min-height: 100dvh; justify-content: flex-start; }
+  .headline { font-size: 34px; }
+  .circle { top: -30px; bottom: auto; right: -30px; width: 90px; height: 90px; transform: none; }
+  .ruler { display: none; }
+  .strip { flex-direction: column; overflow: visible; scroll-snap-type: none; padding: 0; gap: 20px; }
+  .cell { width: 100%; }
+  .panel { height: auto; min-height: 320px; }
+}
