@@ -1,10 +1,10 @@
 import styles from './Page.module.css';
-import { SvgFilters } from './SvgFilters';
-import { BindingNav } from './BindingNav';
-import { NameScribble } from './NameScribble';
-import { PaperSketches } from './PaperSketches';
-import { PaperAccents } from './PaperAccents';
-import { Stickman } from './Stickman';
+import { SvgFilters } from '../SvgFilters';
+import { BindingNav } from '../components/BindingNav';
+import { NameScribble } from '../components/NameScribble';
+import { PaperSketches } from '../components/PaperSketches';
+import { PaperAccents } from '../components/PaperAccents';
+import { Stickman } from '../components/Stickman';
 
 export function Page() {
   return (

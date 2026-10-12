@@ -1,181 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { SvgFilters } from './SvgFilters';
-import { BindingNav } from './BindingNav';
+import { SvgFilters } from '../SvgFilters';
+import { BindingNav } from '../components/BindingNav';
 import styles from './Resume.module.css';
-
-interface Entry {
-  title: string;
-  org?: string;
-  place?: string;
-  period: string;
-  bullets: string[];
-}
-
-interface Education {
-  school: string;
-  degree: string;
-  place: string;
-  period: string;
-  note?: string;
-}
-
-/* ──────────────────────────────────────────────────────────────
-   RÉSUMÉ CONTENT
-   Everything the page shows lives here — the layout below just
-   reads from this object. Update these values to update the page.
-   ────────────────────────────────────────────────────────────── */
-const RESUME = {
-  name: 'Pawan Subedi',
-  role: 'Software Engineer · MS Visualization @ Texas A&M',
-  summary:
-    'Software engineer with four years across systems, web, and internal tooling at HPE and early-stage startups. Now focused on real-time graphics, games, and AR as an MS Visualization student and teaching assistant at Texas A&M.',
-  contact: {
-    github: 'https://github.com/pwnsbd',
-    linkedin: 'https://www.linkedin.com/in/pawan-subedi-6620b4128/',
-    email: 'justpawan7@gmail.com',
-    phone: '605-728-1310',
-  },
-  experience: [
-    {
-      title: 'Teaching Assistant',
-      org: 'Texas A&M',
-      place: 'College Station, TX',
-      period: 'Aug 2025 — Present',
-      bullets: [
-        'Teach weekly lab sections for ~60 students, guiding them through Unreal Engine and building gameplay features with Blueprint scripting.',
-        'Give hands-on technical support — debugging Blueprint graphs, actors/components, and gameplay events — to help teams reach milestone deliverables and playable prototypes.',
-        'Grade assignments and projects against a rubric, with feedback on gameplay functionality, Blueprint logic quality, and completion.',
-      ],
-    },
-    {
-      title: 'System Software Engineer',
-      org: 'Hewlett Packard Enterprise',
-      place: 'San Jose, CA',
-      period: 'Jul 2022 — Apr 2025',
-      bullets: [
-        'Built robust shared functions used by 15 teammates that cut typical script length by 40%, in Python and Pytest.',
-        'Worked on a system-simulation project — defining and identifying defects and pushing the limits of the system through varied test cases and automation.',
-      ],
-    },
-    {
-      title: 'Software Engineer',
-      org: 'Hewlett Packard Enterprise',
-      place: 'San Jose, CA',
-      period: 'May 2021 — May 2022',
-      bullets: [
-        'Created a user-friendly GUI that helped 300+ employees run specific CLI-based tasks efficiently.',
-        'Enhanced the web app UI with Python, Django, MongoDB, Celery, and Elasticsearch to hit project objectives.',
-      ],
-    },
-    {
-      title: 'Software Engineer',
-      org: 'Neighbor Marketing',
-      place: 'Remote · New York',
-      period: 'Apr 2020 — Jun 2020',
-      bullets: [
-        'Led a team of 4 to design and build a property-reviews website reaching 250,000+ people, using React and JavaScript.',
-        'Integrated the Google Maps API for location and autocomplete, Firebase auth for profiles, and Mailchimp for automated emails and newsletters.',
-      ],
-    },
-  ] as Entry[],
-  projects: [
-    {
-      title: 'AR / Game Projects',
-      org: 'Coursework',
-      period: 'Aug 2025 — Present',
-      bullets: [
-        'Built 3 interactive prototypes — including ScavengAR Hunt (a staged AR scavenger hunt) and Animal vs. Human — each a complete gameplay loop from setup to interaction to completion.',
-        'Implemented core game systems: state-based progression, spawning and triggers, UI prompts, and interaction logic, in Unity with an AR stack (Vuforia / AR Foundation).',
-        'Iterated through playtests to fix tracking and interaction bugs, sharpen UX clarity, and improve reliability and performance across builds.',
-      ],
-    },
-    {
-      title: 'GAN — Generative Adversarial Networks',
-      org: 'Self-study',
-      period: 'Oct 2023 — Aug 2025',
-      bullets: [
-        'Studied and reproduced GAN papers — CycleGAN, StyleGAN, DCGAN, SRGAN.',
-        'Attempted to match a Canny edge detector’s output using GAN models, with OpenCV and PyTorch.',
-      ],
-    },
-    {
-      title: 'Health Memo',
-      org: 'Sanford Health Hack — Runner-up · Team Lead',
-      period: 'Sep 2022 — Oct 2022',
-      bullets: [
-        'Pitched a business plan and prototyped an iOS app for logging users’ health.',
-        'Took 2nd place and the People’s Choice award out of 20 teams — $9,000 in total prizes.',
-        'Prototyped in Swift and Parse with Google’s Text-to-Speech and Speech-to-Text.',
-      ],
-    },
-    {
-      title: 'Twitter Clone',
-      org: 'CodePath · iOS',
-      period: 'Oct 2020',
-      bullets: [
-        'Built a Twitter clone in Swift and Storyboard where users stay logged in without losing credentials or tweets.',
-        'Added retweeting, favoriting, and infinite scrolling.',
-      ],
-    },
-    {
-      title: 'Pill Buddy',
-      org: 'Sanford Health Hack — Runner-up · Team Lead',
-      period: 'Sep 2019 — Oct 2019',
-      bullets: [
-        'Built a mobile app and delivered the product pitch — 2nd place out of 12 teams, $7,000 prize pool.',
-        'Designed an interface for 5,000+ elderly Sanford patients to check drug interactions and spot less-obvious ones before an overdose.',
-      ],
-    },
-  ] as Entry[],
-  leadership: [
-    {
-      title: 'Conference Volunteer',
-      org: 'ACM SIGGRAPH 2024',
-      place: 'Denver, CO',
-      period: 'Jul — Aug 2024',
-      bullets: [
-        'Supported conference operations across high-traffic areas — registration, sessions, exhibits — keeping the day-to-day flow smooth.',
-        'Communicated with attendees and organizers to resolve issues quickly and keep activities on schedule.',
-        'Picked up current directions in graphics, games, and interactive tech through on-site programming and demos.',
-      ],
-    },
-    {
-      title: 'Communication Director',
-      org: 'Augustana Student Association',
-      place: 'Sioux Falls, SD',
-      period: 'Aug 2019 — May 2020',
-      bullets: [
-        'Led a team of 6 responsible for transparency and visibility across 100+ student clubs.',
-        'Improved the student experience and maintained the Association website.',
-        'Organized the 2019 Senate election with 30+ student participants.',
-      ],
-    },
-  ] as Entry[],
-  skills: [
-    { label: 'Computer', items: 'C++, Python, Java, React, HTML, JavaScript, Swift' },
-    { label: 'Tools', items: 'Unreal, Unity, Houdini, PyTorch, Keras, Django, Git, Docker, OpenCV' },
-    { label: 'Interests', items: 'Deep learning, reinforcement learning, drawing & painting, football, photography, videography' },
-  ],
-  education: [
-    {
-      school: 'Texas A&M University',
-      degree: 'MS, Visualization',
-      place: 'College Station, TX',
-      period: 'Expected May 2027',
-    },
-    {
-      school: 'Augustana University',
-      degree: 'BA, Computer Science & Data Science · Minor in Math',
-      place: 'Sioux Falls, SD',
-      period: 'May 2022',
-      note: 'GPA 3.52 / 4.00',
-    },
-  ] as Education[],
-  certificates: [
-    'DeepLearning.AI — Deep Learning Specialization: 5 courses incl. Convolutional Neural Networks and Sequence Models (2022–2023).',
-    'Broadway — HTML, CSS, JavaScript (2016).',
-  ],
-};
+import { PROFILE, RESUME } from '../../../content';
+import type { ResumeEntry } from '../../../content';
 
 /* rough hand-drawn underline */
 function Squiggle({ width }: { width: number }) {
@@ -225,7 +53,7 @@ function SocialLinks() {
 }
 
 /* one experience / project / leadership entry, flowing top-to-bottom */
-function EntryBlock({ entry }: { entry: Entry }) {
+function EntryBlock({ entry }: { entry: ResumeEntry }) {
   return (
     <article className={styles.entry}>
       <div className={styles.entryHead}>
@@ -375,7 +203,7 @@ export function Resume() {
                 {RESUME.contact.email}
               </a>
               <Squiggle width={180} />
-              <p className={styles.signoff}>&mdash; Pawan</p>
+              <p className={styles.signoff}>&mdash; {PROFILE.firstName}</p>
             </div>
 
           </div>

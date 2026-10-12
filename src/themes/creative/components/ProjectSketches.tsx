@@ -1,10 +1,7 @@
 /* Hand-drawn window contents for the project cards.
    Coordinates live inside the ProjectWindow content area (x 12–308, y 38–210). */
 
-export type SketchKind =
-  | 'journal' | 'palette' | 'lens' | 'graph' | 'gallery'
-  | 'book' | 'dictionary' | 'orbits' | 'frog'
-  | 'towers' | 'swatches';
+import type { SketchKind } from '../../../content';
 
 const INK = 'var(--ink)';
 const HAND = "'Architects Daughter', cursive";
@@ -223,6 +220,28 @@ const SKETCHES: Record<SketchKind, () => React.ReactNode> = {
       </>
     );
   },
+
+  /* Dead's Rights — a maze wrapped around a sphere */
+  sphere: () => (
+    <>
+      <circle cx="160" cy="122" r="72" fill="var(--paper-dark)" opacity="0.5" stroke={INK} strokeWidth="1.2" />
+      {[-44, -16, 14, 42].map((dy, i) => {
+        const rx = Math.sqrt(72 * 72 - dy * dy);
+        return (
+          <path key={i} d={`M ${160 - rx} ${122 + dy} A ${rx} ${rx * 0.28} 0 0 0 ${160 + rx} ${122 + dy}`}
+            stroke={INK} strokeWidth="1" fill="none" opacity="0.45"
+            strokeDasharray={['38 10', '22 9 50 9', '60 12', '30 8'][i]} />
+        );
+      })}
+      {[[128, 64, 128, 92], [190, 92, 190, 120], [140, 124, 140, 150], [176, 152, 176, 178]].map(([x1, y1, x2, y2], i) => (
+        <path key={i} d={`M ${x1} ${y1} Q ${x1 + 4} ${(y1 + y2) / 2} ${x2} ${y2}`} stroke={INK} strokeWidth="1" opacity="0.45" fill="none" />
+      ))}
+      <circle cx="152" cy="108" r="4" fill="#E57373" opacity="0.8" />
+      <path d="M 158 104 Q 172 96 182 102" stroke={INK} strokeWidth="0.9" fill="none" opacity="0.5" strokeDasharray="2 2" />
+      <Label x={250} y={56} size={8} anchor="middle">find the way</Label>
+      <Label x={250} y={196} size={8} anchor="middle">13 weeks</Label>
+    </>
+  ),
 
   /* Color Picker — base colour, complement and hue slider */
   swatches: () => (

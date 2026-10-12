@@ -1,0 +1,13 @@
+.date { color: #666; font-style: italic; margin: 2px 0 6px; }
+.md h3 { margin: 28px 0 0; font-size: 1.1rem; font-weight: 700; }
+.md p { margin: 8px 0; }
+.md hr { border: 0; border-top: 1px solid #ddd; margin: 24px 0; }
+.tableWrap { overflow-x: auto; margin: 12px 0; }
+.tableWrap table { border-collapse: collapse; font-size: 14px; width: 100%; }
+.tableWrap th, .tableWrap td { text-align: left; vertical-align: top; border: 1px solid #eee; padding: 6px 10px; }
+.tableWrap th { font-weight: 600; background: #fafafa; }
+.cvBtn { display: inline-block; font-size: 13px; padding: 6px 12px; border: 1px solid #0f766e; border-radius: 4px; text-decoration: none; color: #0f766e; background: none; }
+.cvBtn:hover { background: #0f766e; color: #fff; }
+.btnRow { margin: 12px 0 0; }
+.md ul { margin: 8px 0 0 18px; padding-left: 20px; }
+.md li { margin: 4px 0; padding-left: 2px; }

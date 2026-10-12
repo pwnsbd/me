@@ -1,0 +1,13 @@
+.root { position: fixed; top: var(--lamp-top, 56px); right: 24px; z-index: 50; width: 80px; height: 170px; overflow: visible; pointer-events: none; }
+.inline { position: absolute; top: 100%; right: 24px; }
+.hit { pointer-events: all; cursor: grab; outline: none; }
+.hit:active { cursor: grabbing; }
+.hit:focus-visible { outline: 2px dashed currentColor; }
+.bob { animation: bob 1.6s ease-in-out infinite alternate; }
+@keyframes bob { from { transform: translateY(0); } to { transform: translateY(4px); } }
+@media (max-width: 599px) {
+  .root, .inline { right: 12px; transform: scale(0.85); transform-origin: top right; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bob { animation: none; }
+}
