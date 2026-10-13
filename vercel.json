@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    { "source": "/words", "destination": "/words/", "permanent": true },
+    { "source": "/rasa", "destination": "/rasa/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/((?!words/|rasa/|assets/).*)", "destination": "/index.html" }
+  ]
+}
