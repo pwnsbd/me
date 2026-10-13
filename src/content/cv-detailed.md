@@ -157,7 +157,7 @@ Instead of placing a conventional photo gallery inside a floating VR window, it 
 
 *August – October 2026 | Released v0.2.0*
 
-[GitHub](https://github.com/pwnsbd/rasa) · [Project Showcase](https://pwnsbd.github.io/rasa)
+[GitHub](https://github.com/pwnsbd/rasa) · [Project Showcase](https://pwnsbd.me/rasa/)
 
 **Electron · React · TypeScript · Python · PyTorch · SDXL · Computer Vision**
 
@@ -196,7 +196,7 @@ A reference image becomes a reusable asset called an **Essence**. Users can coll
 
 *2026 | Released v0.2.0*
 
-[GitHub](https://github.com/pwnsbd/Words)
+[GitHub](https://github.com/pwnsbd/Words) · [Project Showcase](https://pwnsbd.me/words/)
 
 **Electron · React · TypeScript · llama.cpp · Qwen · Local AI**
 

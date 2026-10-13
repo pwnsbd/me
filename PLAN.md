@@ -12,6 +12,7 @@ Separate content from presentation so the site can switch between the current **
 - 2026-10-12: Recruiter style direction is **editorial resume**: serif name, sans body, generous white space, one accent color, small-caps section labels, print-friendly, Download PDF button.
 - 2026-10-12: Recruiter Home = rauno.me-style horizontal strip of 4 white panels (About me, Experience, Projects, Contact) on a light-gray stage, tick ruler on top, vertical wheel scrolls sideways; panels link to the full Resume/Projects pages. Placeholder type Geist, accent teal #0f766e. (Supersedes the pitch + featured cards idea.)
 - 2026-10-12: Recruiter dark mode follows the OS (`prefers-color-scheme`); no extra toggle, so the pull-chain stays the only switch.
+- 2026-10-13: Project showcase pages live in this repo at `public/<name>/`, served as `pwnsbd.me/<name>/` (words, rasa). Index and rules: `docs/showcases.md`. `vercel.json` adds the SPA fallback (fixes 404 on /projects, /resume refresh).
 
 ## Contracts
 - `docs/contracts/content.md`

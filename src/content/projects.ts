@@ -23,6 +23,8 @@ export const PROJECTS: Project[] = [
     stack: 'Electron · React · TypeScript · llama.cpp · Qwen3.5-9B · Qwen3 embeddings',
     status: 'Released — v0.2.0 Windows installer',
     github: 'https://github.com/pwnsbd/Words',
+    link: '/words/',
+    linkLabel: 'Website',
   },
   {
     group: 'now', sketch: 'lens', stamp: 'long build',
@@ -85,7 +87,7 @@ export const PROJECTS: Project[] = [
     stack: 'Electron · React · TypeScript · FastAPI · PyTorch (CUDA) · SDXL · ControlNet',
     status: 'Released — v0.2.0 Windows installer; processing cut from 64 s to 15 s per pass',
     github: 'https://github.com/pwnsbd/rasa',
-    link: 'https://pwnsbd.github.io/rasa',
+    link: '/rasa/',
     linkLabel: 'Showcase',
   },
   {
@@ -135,6 +137,8 @@ export const PROJECTS: Project[] = [
     stack: 'React · TypeScript · Three.js · GSAP · Zustand · astronomy-engine',
     status: 'Finished for now',
     github: 'https://github.com/pwnsbd/Nakshatra',
+    link: 'https://nakshatra.pwnsbd.me/',
+    linkLabel: 'Live site',
   },
   {
     group: 'proud', sketch: 'frog', stamp: 'finished',

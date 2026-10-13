@@ -19,20 +19,28 @@ export function useStrip() {
     setCurrent(best);
   }, []);
 
-  // Wheel: redirect vertical wheel sideways only when the strip can still move that way.
+  // Wheel anywhere on the page (not just over the strip) scrolls the strip sideways, while the
+  // strip can still move that way. Boxes that scroll vertically themselves keep their wheel.
   useEffect(() => {
     const strip = ref.current;
     if (!strip) return;
     const onWheel = (e: WheelEvent) => {
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
       if (strip.scrollWidth <= strip.clientWidth + 1) return; // stacked layout
+      for (let el = e.target as HTMLElement | null; el && el !== strip && el !== document.body; el = el.parentElement) {
+        const oy = getComputedStyle(el).overflowY;
+        if ((oy === 'auto' || oy === 'scroll') && el.scrollHeight > el.clientHeight + 1) {
+          const atEnd = e.deltaY > 0 ? el.scrollTop + el.clientHeight >= el.scrollHeight - 1 : el.scrollTop <= 0;
+          if (!atEnd) return;
+        }
+      }
       const max = strip.scrollWidth - strip.clientWidth;
       if ((e.deltaY < 0 && strip.scrollLeft <= 0) || (e.deltaY > 0 && strip.scrollLeft >= max - 1)) return;
       e.preventDefault();
       strip.scrollLeft += e.deltaY;
     };
-    strip.addEventListener('wheel', onWheel, { passive: false });
-    return () => strip.removeEventListener('wheel', onWheel);
+    window.addEventListener('wheel', onWheel, { passive: false });
+    return () => window.removeEventListener('wheel', onWheel);
   }, []);
 
   useEffect(() => { update(); }, [update]);
