@@ -23,6 +23,8 @@ export const PROJECTS: Project[] = [
     stack: 'Electron · React · TypeScript · llama.cpp · Qwen3.5-9B · Qwen3 embeddings',
     status: 'Released — v0.2.0 Windows installer',
     github: 'https://github.com/pwnsbd/Words',
+    link: 'https://pwnsbd.github.io/Words/',
+    linkLabel: 'Website',
   },
   {
     group: 'now', sketch: 'lens', stamp: 'long build',
@@ -133,6 +135,8 @@ export const PROJECTS: Project[] = [
     stack: 'React · TypeScript · Three.js · GSAP · Zustand · astronomy-engine',
     status: 'Finished for now',
     github: 'https://github.com/pwnsbd/Nakshatra',
+    link: 'https://nakshatra.pwnsbd.me/',
+    linkLabel: 'Live site',
   },
   {
     group: 'proud', sketch: 'frog', stamp: 'finished',
