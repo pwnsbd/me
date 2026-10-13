@@ -37,6 +37,8 @@ export const PROJECTS: Project[] = [
       'Each optical law written exactly once, validated against analytic or catalog values before it appears in a scene, and everything you see in the headset driven by that one core. A lab bench you can step into, where the picture is never lying to you.',
     stack: 'Unreal Engine 5.8 · C++ · Blueprints · HLSL · OpenXR · Meta Quest 3',
     status: 'In development — master’s thesis direction; 100+ automated optics checks, see-through update cut from 7.6 ms to 2.9 ms on Quest 3',
+    link: '/rayforge/',
+    linkLabel: 'Showcase',
   },
   {
     group: 'now', sketch: 'graph', stamp: 'in progress',
